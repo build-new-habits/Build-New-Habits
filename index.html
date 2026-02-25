@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build New Habits — Grow Into Your Best Self</title>
+<meta name="description" content="Compassionate digital coaching for neurodivergent adults, students, and lifelong learners. Built by an educator. Grounded in evidence.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --forest: #1e3d20;
+  --forest-mid: #2d5a27;
+  --forest-light: #4a8c3f;
+  --sage: #7ab570;
+  --sage-light: #b8d9b2;
+  --cream: #f7f3e8;
+  --cream-dark: #ede8d6;
+  --warm-white: #faf8f2;
+  --brown: #3d2b1f;
+  --amber: #c8860a;
+  --amber-light: #f0c040;
+  --text: #1a1a1a;
+  --text-mid: #4a4a4a;
+  --text-light: #7a7a7a;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* ─── TYPOGRAPHY ─── */
+.serif { font-family: 'Cormorant Garamond', serif; }
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes growLine {
+  from { scaleY: 0; }
+  to   { scaleY: 1; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-12px) rotate(1deg); }
+}
+@keyframes grain {
+  0%, 100% { transform: translate(0,0); }
+  10%       { transform: translate(-2%,-3%); }
+  30%       { transform: translate(3%,2%); }
+  50%       { transform: translate(-1%,4%); }
+  70%       { transform: translate(4%,-2%); }
+  90%       { transform: translate(-3%,1%); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1.2rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.4s, backdrop-filter 0.4s, box-shadow 0.4s;
+}
+nav.scrolled {
+  background: rgba(247,243,232,0.92);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.08);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--forest);
+  letter-spacing: -0.3px;
+  text-decoration: none;
+}
+.nav-logo span { color: var(--sage); }
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  align-items: center;
+}
+.nav-links a {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-mid);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--forest); }
+.nav-cta {
+  background: var(--forest) !important;
+  color: white !important;
+  padding: 0.55rem 1.3rem;
+  border-radius: 2px;
+  font-weight: 600 !important;
+  transition: background 0.2s !important;
+}
+.nav-cta:hover { background: var(--forest-light) !important; }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-left {
+  background: var(--forest);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8rem 5rem 6rem 5rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Grain texture overlay */
+.hero-left::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.3;
+  pointer-events: none;
+  animation: grain 8s steps(1) infinite;
+}
+
+.hero-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 1.5rem;
+  animation: fadeUp 0.8s 0.2s both;
+}
+
+.hero-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 700;
+  color: white;
+  line-height: 1.05;
+  letter-spacing: -1px;
+  margin-bottom: 1.8rem;
+  animation: fadeUp 0.8s 0.35s both;
+}
+
+.hero-headline em {
+  font-style: italic;
+  color: var(--sage);
+}
+
+.hero-body {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.8;
+  max-width: 420px;
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+  animation: fadeUp 0.8s 0.5s both;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  animation: fadeUp 0.8s 0.65s both;
+}
+
+.btn-primary {
+  background: var(--sage);
+  color: var(--forest);
+  padding: 0.9rem 2rem;
+  border-radius: 2px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: background 0.2s, transform 0.2s;
+  display: inline-block;
+}
+.btn-primary:hover { background: var(--amber-light); transform: translateY(-1px); }
+
+.btn-ghost {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.btn-ghost:hover { color: white; border-color: white; }
+
+.hero-credentials {
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  gap: 2rem;
+  animation: fadeUp 0.8s 0.8s both;
+}
+
+.hero-stat .number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--sage);
+  line-height: 1;
+}
+.hero-stat .label {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.5);
+  margin-top: 0.2rem;
+  font-weight: 400;
+}
+
+/* Hero right — visual */
+.hero-right {
+  background: var(--cream-dark);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-right-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Large decorative botanical background */
+.hero-botanical {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-botanical svg {
+  width: 110%;
+  height: 110%;
+  opacity: 0.12;
+}
+
+/* Floating cards */
+.floating-cards {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+  animation: fadeIn 1s 0.8s both;
+}
+
+.app-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.1rem 1.4rem;
+  box-shadow: 0 8px 32px rgba(30,61,32,0.12), 0 2px 8px rgba(0,0,0,0.06);
+  max-width: 280px;
+}
+
+.app-card:nth-child(2) {
+  margin-left: 2.5rem;
+  animation: float 6s ease-in-out infinite;
+}
+.app-card:nth-child(1) {
+  animation: float 7s ease-in-out 1s infinite;
+}
+.app-card:nth-child(3) {
+  margin-left: 1rem;
+  animation: float 5.5s ease-in-out 2s infinite;
+}
+
+.app-card .card-tag {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--forest-light);
+  margin-bottom: 0.5rem;
+}
+
+.app-card .card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--forest);
+  margin-bottom: 0.4rem;
+}
+
+.app-card .card-body {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+.app-card .card-bar {
+  height: 4px;
+  background: var(--cream-dark);
+  border-radius: 2px;
+  margin-top: 0.7rem;
+  overflow: hidden;
+}
+
+.app-card .card-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--forest-light), var(--sage));
+  border-radius: 2px;
+}
+
+/* ─── DIAGONAL DIVIDER ─── */
+.diagonal {
+  height: 80px;
+  background: var(--forest);
+  clip-path: polygon(0 0, 100% 0, 100% 40%, 0 100%);
+  margin-bottom: -2px;
+}
+
+/* ─── SECTION: PHILOSOPHY ─── */
+.section-philosophy {
+  background: var(--warm-white);
+  padding: 7rem 5rem;
+  position: relative;
+}
+
+.section-philosophy::before {
+  content: '"';
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20rem;
+  color: var(--cream-dark);
+  position: absolute;
+  top: -2rem;
+  left: 3rem;
+  line-height: 1;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.philosophy-left .section-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--forest-light);
+  margin-bottom: 1rem;
+}
+
+.philosophy-left h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  color: var(--forest);
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  margin-bottom: 1.5rem;
+}
+
+.philosophy-left p {
+  font-size: 1rem;
+  color: var(--text-mid);
+  line-height: 1.85;
+  font-weight: 300;
+  margin-bottom: 1rem;
+}
+
+.philosophy-left blockquote {
+  border-left: 3px solid var(--sage);
+  padding: 1rem 1.4rem;
+  margin-top: 1.5rem;
+  background: var(--cream);
+  border-radius: 0 4px 4px 0;
+}
+
+.philosophy-left blockquote p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--forest);
+  margin-bottom: 0.4rem;
+}
+
+.philosophy-left blockquote cite {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  font-style: normal;
+}
+
+.principles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.principle-item {
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-start;
+  padding: 1.2rem;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+.principle-item:hover { background: var(--cream); }
+
+.principle-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--forest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.principle-text h4 {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--forest);
+  margin-bottom: 0.3rem;
+}
+
+.principle-text p {
+  font-size: 0.82rem;
+  color: var(--text-light);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ─── SECTION: FOUNDER ─── */
+.section-founder {
+  background: var(--forest);
+  padding: 7rem 5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-founder::after {
+  content: 'EDUCATOR';
+  position: absolute;
+  right: -2rem;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 8rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.03);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.founder-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.founder-portrait {
+  width: 240px;
+  flex-shrink: 0;
+}
+
+.portrait-frame {
+  width: 220px;
+  height: 270px;
+  background: var(--forest-mid);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.portrait-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.portrait-initials {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--sage);
+  line-height: 1;
+}
+
+.portrait-label {
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.4);
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.portrait-accent {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--forest-light), var(--sage), var(--amber));
+}
+
+.founder-content .section-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 1rem;
+}
+
+.founder-content h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  color: white;
+  line-height: 1.15;
+  margin-bottom: 0.4rem;
+}
+
+.founder-content .founder-role {
+  font-size: 0.85rem;
+  color: var(--sage);
+  font-weight: 500;
+  margin-bottom: 1.8rem;
+}
+
+.founder-content p {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.85;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  max-width: 560px;
+}
+
+.credentials-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+  margin-top: 2rem;
+}
+
+.credential {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  padding: 0.9rem 1rem;
+}
+
+.credential .cred-icon {
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.credential h5 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.2rem;
+}
+
+.credential p {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ─── SECTION: PRODUCTS ─── */
+.section-products {
+  background: var(--cream);
+  padding: 7rem 5rem;
+}
+
+.section-header {
+  max-width: 1100px;
+  margin: 0 auto 4rem;
+}
+
+.section-header .section-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--forest-light);
+  margin-bottom: 1rem;
+}
+
+.section-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--forest);
+  line-height: 1.15;
+  max-width: 600px;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.product-card {
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(30,61,32,0.15);
+}
+
+.product-card.featured {
+  background: var(--forest);
+  color: white;
+}
+.product-card.secondary {
+  background: white;
+  border: 1px solid var(--cream-dark);
+}
+.product-card.tertiary {
+  background: var(--cream-dark);
+  border: 1px solid #d8d0b8;
+}
+
+.product-card-inner {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.product-status {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.7rem;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 1.2rem;
+  align-self: flex-start;
+}
+
+.featured .product-status {
+  background: var(--sage);
+  color: var(--forest);
+}
+.secondary .product-status {
+  background: var(--cream-dark);
+  color: var(--forest-light);
+}
+.tertiary .product-status {
+  background: rgba(255,255,255,0.6);
+  color: var(--text-light);
+}
+
+.product-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  line-height: 1.1;
+}
+.featured h3 { color: white; }
+.secondary h3, .tertiary h3 { color: var(--forest); }
+
+.product-card .product-audience {
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.featured .product-audience { color: var(--sage-light); }
+.secondary .product-audience, .tertiary .product-audience { color: var(--text-light); }
+
+.product-card p {
+  font-size: 0.85rem;
+  line-height: 1.75;
+  flex: 1;
+  font-weight: 300;
+}
+.featured p { color: rgba(255,255,255,0.75); }
+.secondary p, .tertiary p { color: var(--text-mid); }
+
+.product-features {
+  list-style: none;
+  margin: 1.2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.product-features li {
+  font-size: 0.78rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.featured .product-features li { color: rgba(255,255,255,0.8); }
+.secondary .product-features li, .tertiary .product-features li { color: var(--text-mid); }
+
+.product-features li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--sage);
+}
+.secondary .product-features li::before, .tertiary .product-features li::before {
+  background: var(--forest-light);
+}
+
+.product-revenue {
+  margin-top: 1.5rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.featured .product-revenue { color: var(--sage); border-color: rgba(255,255,255,0.1); }
+.secondary .product-revenue { color: var(--forest); border-color: var(--cream-dark); }
+.tertiary .product-revenue { color: var(--forest-mid); border-color: rgba(0,0,0,0.08); }
+
+.product-revenue span {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 400;
+  margin-top: 0.15rem;
+  opacity: 0.7;
+}
+
+.product-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.2rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--sage);
+  transition: gap 0.2s;
+}
+.product-link:hover { gap: 0.8rem; }
+.secondary .product-link, .tertiary .product-link { color: var(--forest-light); }
+
+/* ─── SECTION: EVIDENCE ─── */
+.section-evidence {
+  background: var(--cream-dark);
+  padding: 6rem 5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.evidence-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.evidence-content .section-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--forest-light);
+  margin-bottom: 1rem;
+}
+
+.evidence-content h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  color: var(--forest);
+  line-height: 1.2;
+  margin-bottom: 1.2rem;
+}
+
+.evidence-content p {
+  font-size: 0.92rem;
+  color: var(--text-mid);
+  line-height: 1.85;
+  font-weight: 300;
+}
+
+.framework-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.framework {
+  background: white;
+  border-radius: 4px;
+  padding: 1.1rem 1.3rem;
+  border-left: 3px solid var(--forest-light);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.framework:hover {
+  border-color: var(--amber);
+  transform: translateX(4px);
+}
+
+.framework h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--forest);
+}
+
+.framework p {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+/* ─── SECTION: CTA ─── */
+.section-cta {
+  background: var(--forest);
+  padding: 7rem 5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(106,191,94,0.15), transparent);
+  pointer-events: none;
+}
+
+.cta-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.cta-inner .section-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 1.2rem;
+}
+
+.cta-inner h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 700;
+  color: white;
+  line-height: 1.15;
+  margin-bottom: 1.2rem;
+}
+
+.cta-inner p {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.8;
+  font-weight: 300;
+  margin-bottom: 2.5rem;
+}
+
+.cta-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-cta-primary {
+  background: var(--sage);
+  color: var(--forest);
+  padding: 1rem 2.2rem;
+  border-radius: 2px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+  display: inline-block;
+}
+.btn-cta-primary:hover { background: var(--amber-light); transform: translateY(-2px); }
+
+.btn-cta-ghost {
+  background: transparent;
+  color: rgba(255,255,255,0.8);
+  padding: 1rem 2.2rem;
+  border-radius: 2px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.25);
+  transition: border-color 0.2s, color 0.2s;
+  display: inline-block;
+}
+.btn-cta-ghost:hover { border-color: rgba(255,255,255,0.6); color: white; }
+
+/* Email capture */
+.email-capture {
+  display: flex;
+  gap: 0;
+  max-width: 420px;
+  margin: 0 auto;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+
+.email-capture input {
+  flex: 1;
+  padding: 0.9rem 1.2rem;
+  border: none;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  background: rgba(255,255,255,0.95);
+  color: var(--text);
+  outline: none;
+}
+.email-capture input::placeholder { color: var(--text-light); }
+
+.email-capture button {
+  background: var(--amber);
+  color: white;
+  border: none;
+  padding: 0.9rem 1.4rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.email-capture button:hover { background: var(--amber-light); color: var(--brown); }
+
+.cta-subtext {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.4);
+  margin-top: 0.8rem;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--brown);
+  padding: 3rem 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.8);
+}
+.footer-logo span { color: var(--sage); }
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+.footer-links a {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: rgba(255,255,255,0.8); }
+
+.footer-copy {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.3);
+}
+
+/* ─── MOBILE ─── */
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .hero-left { padding: 7rem 2rem 3rem; }
+  .hero-right { min-height: 320px; }
+
+  .philosophy-grid,
+  .founder-grid,
+  .evidence-inner { grid-template-columns: 1fr; gap: 3rem; }
+
+  .products-grid { grid-template-columns: 1fr; }
+
+  .section-philosophy,
+  .section-founder,
+  .section-products,
+  .section-evidence,
+  .section-cta { padding: 4rem 1.5rem; }
+
+  .credentials-grid { grid-template-columns: 1fr; }
+  .hero-credentials { gap: 1.5rem; flex-wrap: wrap; }
+
+  footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+}
+
+/* Focus styles for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--sage);
+  outline-offset: 3px;
+}
+
+/* Skip to content */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  background: var(--forest);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 4px 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  z-index: 999;
+  transition: top 0.2s;
+}
+.skip-link:focus { top: 0; }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- NAV -->
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <a href="/" class="nav-logo" aria-label="Build New Habits home">Build <span>New</span> Habits</a>
+  <ul class="nav-links">
+    <li><a href="#philosophy">Our Approach</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#founder">About</a></li>
+    <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<main id="main">
+<section class="hero" aria-label="Introduction">
+
+  <div class="hero-left">
+    <p class="hero-eyebrow">Digital Coaching · Evidence-Based · Compassionate</p>
+    <h1 class="hero-headline">
+      Coaching that adapts<br>to your <em>real</em> life.
+    </h1>
+    <p class="hero-body">
+      Most apps are designed for people who don't need help. Build New Habits is different — an adaptive digital coach that listens first, and prescribes second. Built by an educator. Grounded in science.
+    </p>
+    <div class="hero-actions">
+      <a href="#products" class="btn-primary">See Our Products</a>
+      <a href="#philosophy" class="btn-ghost">Our Approach →</a>
+    </div>
+    <div class="hero-credentials" aria-label="Key credentials">
+      <div class="hero-stat">
+        <div class="number">18</div>
+        <div class="label">Years teaching<br>& coaching</div>
+      </div>
+      <div class="hero-stat">
+        <div class="number">3</div>
+        <div class="label">Products in<br>development</div>
+      </div>
+      <div class="hero-stat">
+        <div class="number">0</div>
+        <div class="label">Dark patterns.<br>Ever.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right" aria-hidden="true">
+    <div class="hero-botanical">
+      <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="200" cy="200" r="160" stroke="#2d5a27" stroke-width="0.5"/>
+        <circle cx="200" cy="200" r="120" stroke="#2d5a27" stroke-width="0.5"/>
+        <circle cx="200" cy="200" r="80" stroke="#2d5a27" stroke-width="0.5"/>
+        <line x1="200" y1="40" x2="200" y2="360" stroke="#2d5a27" stroke-width="0.5"/>
+        <line x1="40" y1="200" x2="360" y2="200" stroke="#2d5a27" stroke-width="0.5"/>
+        <line x1="87" y1="87" x2="313" y2="313" stroke="#2d5a27" stroke-width="0.5"/>
+        <line x1="313" y1="87" x2="87" y2="313" stroke="#2d5a27" stroke-width="0.5"/>
+        <!-- Leaves -->
+        <ellipse cx="200" cy="100" rx="14" ry="28" fill="#4a8c3f" opacity="0.6" transform="rotate(0 200 100)"/>
+        <ellipse cx="270" cy="140" rx="14" ry="28" fill="#4a8c3f" opacity="0.5" transform="rotate(60 270 140)"/>
+        <ellipse cx="270" cy="260" rx="14" ry="28" fill="#4a8c3f" opacity="0.4" transform="rotate(120 270 260)"/>
+        <ellipse cx="200" cy="300" rx="14" ry="28" fill="#4a8c3f" opacity="0.6" transform="rotate(180 200 300)"/>
+        <ellipse cx="130" cy="260" rx="14" ry="28" fill="#4a8c3f" opacity="0.5" transform="rotate(240 130 260)"/>
+        <ellipse cx="130" cy="140" rx="14" ry="28" fill="#4a8c3f" opacity="0.4" transform="rotate(300 130 140)"/>
+      </svg>
+    </div>
+
+    <div class="floating-cards">
+      <div class="app-card">
+        <div class="card-tag">Today's Check-In · Alongside</div>
+        <div class="card-title">How are you feeling right now?</div>
+        <div class="card-body">Energy: 6/10 · Mood: 7/10 · Sleep: Good</div>
+        <div class="card-bar"><div class="card-bar-fill" style="width:60%"></div></div>
+      </div>
+      <div class="app-card">
+        <div class="card-tag">Active Coach Recommendation</div>
+        <div class="card-title">Mobility & Light Strength</div>
+        <div class="card-body">Based on your energy today, here's why this works for you right now.</div>
+        <div class="card-bar"><div class="card-bar-fill" style="width:75%"></div></div>
+      </div>
+      <div class="app-card">
+        <div class="card-tag">Student Life Hub</div>
+        <div class="card-title">Exam week detected 📚</div>
+        <div class="card-body">Switching to Focus Mode. Pomodoro timer ready. £1 meals queued.</div>
+        <div class="card-bar"><div class="card-bar-fill" style="width:45%"></div></div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="section-philosophy" id="philosophy" aria-labelledby="philosophy-heading">
+  <div class="philosophy-grid">
+    <div class="philosophy-left reveal">
+      <div class="section-eyebrow">Our Approach</div>
+      <h2 id="philosophy-heading">Listen first.<br>Prescribe second.</h2>
+      <p>The mainstream coaching app has a fatal flaw: it's built for the best version of you. The one with consistent energy, clear goals, and unlimited motivation. But real life — especially for neurodivergent adults — doesn't work like that.</p>
+      <p>Build New Habits starts somewhere different. Every product begins by asking how you're actually doing today. It adapts to your reality, not the reality it wishes you had.</p>
+      <blockquote>
+        <p>"Compassionate digital coaching for the people mainstream apps have always failed."</p>
+        <cite>— Graeme Wright, Founder</cite>
+      </blockquote>
+    </div>
+    <div class="principles-list" aria-label="Core principles">
+      <div class="principle-item reveal reveal-delay-1">
+        <div class="principle-icon" aria-hidden="true">🚫</div>
+        <div class="principle-text">
+          <h4>No shame mechanics</h4>
+          <p>No streaks to break. No guilt notifications. No punishment for having a hard day. A fresh start is always available — because life is genuinely hard sometimes.</p>
+        </div>
+      </div>
+      <div class="principle-item reveal reveal-delay-2">
+        <div class="principle-icon" aria-hidden="true">💡</div>
+        <div class="principle-text">
+          <h4>Radical transparency</h4>
+          <p>Every recommendation comes with a clear "why." Not a black box. Users — especially neurodivergent users — deserve to understand the logic behind every suggestion.</p>
+        </div>
+      </div>
+      <div class="principle-item reveal reveal-delay-3">
+        <div class="principle-icon" aria-hidden="true">🧠</div>
+        <div class="principle-text">
+          <h4>Evidence-based design</h4>
+          <p>Grounded in Self-Determination Theory, SOLO Taxonomy, Mood Meter science, and Dr. Claire Plumbly's burnout research. Not trends. Evidence.</p>
+        </div>
+      </div>
+      <div class="principle-item reveal reveal-delay-4">
+        <div class="principle-icon" aria-hidden="true">🛡️</div>
+        <div class="principle-text">
+          <h4>Privacy by default</h4>
+          <p>All data stays on your device. No accounts required. No third-party tracking. No selling your behaviour to advertisers. Your data is yours.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="section-founder" id="founder" aria-labelledby="founder-heading">
+  <div class="founder-grid">
+    <div class="founder-portrait reveal">
+      <div class="portrait-frame" role="img" aria-label="Graeme Wright, Founder">
+        <div class="portrait-placeholder">
+          <div class="portrait-initials">GW</div>
+          <div class="portrait-label">Add your photo here</div>
+        </div>
+        <div class="portrait-accent"></div>
+      </div>
+    </div>
+    <div class="founder-content reveal reveal-delay-2">
+      <div class="section-eyebrow">The Founder</div>
+      <h2 id="founder-heading">Graeme Wright</h2>
+      <div class="founder-role">Digital Coach · Weston College · Somerset</div>
+      <p>This platform wasn't designed in a tech startup. It was designed by someone who has spent 18 years watching people fail — not from lack of effort, but from lack of the right support at the right moment.</p>
+      <p>As a Digital Coach at Weston College with a background in instructional design and evidence-based learning, the decisions behind every product aren't guesses. They're grounded in how people actually learn, change, and grow.</p>
+      <p>Build New Habits is built for the audiences I know best: students who are overwhelmed, adults who've been failed by mainstream fitness culture, and people who need coaching that meets them where they actually are.</p>
+      <div class="credentials-grid" aria-label="Professional credentials">
+        <div class="credential">
+          <div class="cred-icon" aria-hidden="true">🎓</div>
+          <h5>Professional Diploma</h5>
+          <p>Instructional Design & Learning Technology</p>
+        </div>
+        <div class="credential">
+          <div class="cred-icon" aria-hidden="true">📋</div>
+          <h5>CMI Level 5</h5>
+          <p>Operational Management</p>
+        </div>
+        <div class="credential">
+          <div class="cred-icon" aria-hidden="true">🏫</div>
+          <h5>Digital Coach</h5>
+          <p>Weston College — 18 years in education</p>
+        </div>
+        <div class="credential">
+          <div class="cred-icon" aria-hidden="true">🔬</div>
+          <h5>Evidence-Based Practice</h5>
+          <p>SDT, SOLO Taxonomy, Burnout Science</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="section-products" id="products" aria-labelledby="products-heading">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">The Products</div>
+    <h2 id="products-heading">One coaching engine.<br>Three distinct products.</h2>
+  </div>
+  <div class="products-grid">
+    <div class="product-card featured reveal">
+      <div class="product-card-inner">
+        <span class="product-status">Building Now · June 2026</span>
+        <h3>Alongside</h3>
+        <div class="product-audience">Neurodivergent Adults · B2C Subscription</div>
+        <p>Fitness coaching that adapts to how you actually feel today. Daily check-in with energy, mood, sleep and pain levels drives every recommendation. Burnout detection. Condition safety filtering. No shame, ever.</p>
+        <ul class="product-features" aria-label="Key features">
+          <li>Daily adaptive check-in system</li>
+          <li>Transparent workout rationale</li>
+          <li>Burnout detection & protection</li>
+          <li>Condition & injury safety filtering</li>
+          <li>Credits, not streaks</li>
+        </ul>
+        <div class="product-revenue">
+          £12.99/month · £119/year
+          <span>Free tier available · No account needed</span>
+        </div>
+        <a href="https://build-new-habits.github.io/alongside-app/" class="product-link" target="_blank" rel="noopener">
+          Try the Live Demo →
+        </a>
+      </div>
+    </div>
+    <div class="product-card secondary reveal reveal-delay-2">
+      <div class="product-card-inner">
+        <span class="product-status">Planned · 2027</span>
+        <h3>Student Life Hub</h3>
+        <div class="product-audience">HE Institutions · B2B Licensing</div>
+        <p>Reduces dropout rates by coaching students through life admin overwhelm — budgeting, cooking, study skills, tenant rights. Pilot-ready at Weston College.</p>
+        <ul class="product-features">
+          <li>Exam week detection → Focus Mode</li>
+          <li>Budget-adaptive meal planning</li>
+          <li>Study technique personalisation</li>
+          <li>Life admin scaffolding</li>
+        </ul>
+        <div class="product-revenue">
+          £5,000–10,000/year per institution
+          <span>10 institutions = £50–100K ARR</span>
+        </div>
+      </div>
+    </div>
+    <div class="product-card tertiary reveal reveal-delay-3">
+      <div class="product-card-inner">
+        <span class="product-status">Concept · Future</span>
+        <h3>Digital Literacy</h3>
+        <div class="product-audience">Older Adults · Grant / Council Funded</div>
+        <p>Safe, anxiety-free digital skills coaching for older adults facing exclusion. WhatsApp, scam awareness, video calls — taught without judgment.</p>
+        <ul class="product-features">
+          <li>Large-text, high-contrast design</li>
+          <li>Simulation-based learning cards</li>
+          <li>Anxiety-free environment</li>
+          <li>Council & library partnership model</li>
+        </ul>
+        <div class="product-revenue">
+          Grant funded · Social impact model
+          <span>Council & library partnerships</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVIDENCE -->
+<section class="section-evidence" aria-labelledby="evidence-heading">
+  <div class="evidence-inner">
+    <div class="evidence-content reveal">
+      <div class="section-eyebrow">The Evidence Base</div>
+      <h2 id="evidence-heading">Not trends. Science.</h2>
+      <p>Every design decision in the Build New Habits platform is traceable to a specific psychological or educational framework. This isn't wellness content dressed up as coaching — it's instructional design applied to habit formation and behaviour change.</p>
+    </div>
+    <div class="framework-stack reveal reveal-delay-2" aria-label="Evidence frameworks">
+      <div class="framework">
+        <h4>Self-Determination Theory (Deci & Ryan)</h4>
+        <p>Autonomy, competence, and relatedness underpin every feature. Users choose — they're never commanded.</p>
+      </div>
+      <div class="framework">
+        <h4>SOLO Taxonomy (Biggs & Collis)</h4>
+        <p>Scaffolded learning progression from surface to deep engagement, applied to habit formation.</p>
+      </div>
+      <div class="framework">
+        <h4>Mood Meter Science (Yale Centre for EI)</h4>
+        <p>Energy × Pleasantness check-ins map to the Mood Meter quadrant model for emotional awareness.</p>
+      </div>
+      <div class="framework">
+        <h4>Burnout Research (Dr. Claire Plumbly)</h4>
+        <p>"Burnout: How to Manage Your Nervous System" — detection patterns built directly from this research.</p>
+      </div>
+      <div class="framework">
+        <h4>Acceptance & Commitment Therapy</h4>
+        <p>Psychological flexibility and values-based action guide the coaching language and framing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-cta" id="contact" aria-labelledby="cta-heading">
+  <div class="cta-inner">
+    <div class="section-eyebrow reveal">Get Involved</div>
+    <h2 class="reveal reveal-delay-1" id="cta-heading">If you work in EdTech, neurodivergent services, or digital health — let's talk.</h2>
+    <p class="reveal reveal-delay-2">I'm looking for pilot partners, institutional collaborators, and people who believe compassionate coaching technology can change lives. Not investment — conversation.</p>
+
+    <div class="email-capture reveal reveal-delay-3" role="form" aria-label="Email signup">
+      <input type="email" placeholder="your@email.com" aria-label="Your email address"/>
+      <button type="submit">Stay Updated</button>
+    </div>
+    <p class="cta-subtext reveal reveal-delay-4">No spam. No dark patterns. Unsubscribe anytime.</p>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <div class="footer-logo">Build <span>New</span> Habits</div>
+  <ul class="footer-links" aria-label="Footer links">
+    <li><a href="#philosophy">Approach</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#founder">About</a></li>
+    <li><a href="https://build-new-habits.github.io/alongside-app/" target="_blank" rel="noopener">Try Alongside</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 Build New Habits · Weston-super-Mare, Somerset</p>
+</footer>
+
+<script>
+// Nav scroll effect
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Email capture (placeholder)
+document.querySelector('.email-capture button').addEventListener('click', () => {
+  const input = document.querySelector('.email-capture input');
+  if (input.value && input.value.includes('@')) {
+    input.value = '';
+    input.placeholder = '✓ Thanks — we\'ll be in touch!';
+    input.style.background = '#f0faf0';
+  }
+});
+</script>
+
+</body>
+</html>
