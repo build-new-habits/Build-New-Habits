@@ -8,6 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- Set view class immediately to prevent layout flash -->
+<script>document.documentElement.classList.add('js-loading'); document.addEventListener('DOMContentLoaded', function(){ document.body.classList.add('desktop-view'); document.documentElement.classList.remove('js-loading'); });</script>
 <style>
   /* ─── RESET & BASE ─── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -58,6 +60,10 @@
     padding: 0 2rem;
     height: 56px;
     display: flex; align-items: center; justify-content: space-between;
+  }
+  /* On real mobile screens, toggle bar is hidden so nav goes back to top */
+  @media (max-width: 900px) {
+    nav { top: 0 !important; }
   }
   .nav-logo {
     font-family: var(--serif);
@@ -996,12 +1002,14 @@
     border-radius: 0;
     max-width: none;
   }
+  /* Safety: if toggle bar somehow isn't hidden, don't let it block clicks on content below */
+  #view-toggle-bar { pointer-events: auto; }
 
   /* ─── RESPONSIVE (real mobile screens) ─── */
   @media (max-width: 900px) {
-    body:not(.mobile-view) nav { top: 0; }
-    body:not(.mobile-view) #view-toggle-bar { display: none !important; }
-    body:not(.mobile-view) .panel { padding-top: 56px; }
+    #view-toggle-bar { display: none !important; }
+    nav { top: 0 !important; }
+    .panel { padding-top: 56px !important; }
     body:not(.mobile-view) .hero-content { grid-template-columns: 1fr; padding: 2rem 1.25rem; }
     body:not(.mobile-view) .hero-phone { display: none; }
     body:not(.mobile-view) .nav-tabs { display: none; }
@@ -1020,6 +1028,8 @@
     body:not(.mobile-view) .comp-table { min-width: 480px; font-size: 0.8rem; }
     body:not(.mobile-view) .download-btn-group { flex-direction: column; }
     body:not(.mobile-view) .framework-item { flex-direction: column; }
+    /* site-frame should have no top margin on real mobile */
+    #site-frame { margin-top: 0 !important; }
   }
 
   /* ─── ANIMATIONS ─── */
@@ -1886,7 +1896,7 @@
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   // ─── View toggle ───
   function setView(mode) {
     const body = document.body;
@@ -2097,4 +2107,21 @@
       submitBtn.disabled = false;
       submitLabel.style.display = '';
       spinner.style.display = 'none';
-      errorEl.textContent =
+      errorEl.textContent = 'Something went wrong — please try again, or email hello@buildnewhabits.co.uk directly.';
+      errorEl.style.display = 'block';
+    }
+  });
+
+  // ─── Keyboard nav for desktop tabs ───
+  document.querySelectorAll('.nav-tab').forEach((tab, i, tabs) => {
+    tab.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') { tabs[(i+1)%tabs.length].focus(); tabs[(i+1)%tabs.length].click(); }
+      if (e.key === 'ArrowLeft') { tabs[(i-1+tabs.length)%tabs.length].focus(); tabs[(i-1+tabs.length)%tabs.length].click(); }
+    });
+  });
+
+  // Init as desktop
+  document.body.classList.add('desktop-view');
+</script>
+</body>
+</html>
