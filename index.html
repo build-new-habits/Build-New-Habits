@@ -1563,7 +1563,7 @@
 
     <div style="margin-top: 3rem; padding: 2rem; background: var(--teal-pale); border-radius: var(--radius); text-align: center;">
       <h3 style="font-family: var(--serif); font-size: 1.3rem; color: var(--dark); margin-bottom: 0.5rem;">Become a Founding Member</h3>
-      <p style="color: var(--mid); font-size: 0.9rem; max-width: 480px; margin: 0 auto 1.5rem; line-height: 1.7;">Alongside is in beta. Founding Members get lifetime access for £49, 10 friend codes to share, and direct input into the product's future. We're looking for 10–50 people who'll use the app daily and tell us honestly what works and what doesn't.</p>
+      <p style="color: var(--mid); font-size: 0.9rem; max-width: 480px; margin: 0 auto 1.5rem; line-height: 1.7;">Alongside is in beta. Founding Members get 3 months of free unlimited access, then the option to become a lifetime member for £49. In return, we ask for honest feedback on your experience — what works, what doesn't, and what you wish existed. You'll have a genuine role in shaping the direction of the app, built for people like us.</p>
       <button class="btn-primary" style="background: var(--teal); color: white; display: inline-flex; border: none;" onclick="showSignupModal('founding')" aria-label="Apply to become a Founding Member">Apply to be a Founding Member →</button>
     </div>
   </section>
@@ -1628,13 +1628,13 @@
       </div>
       <div class="pricing-card">
         <div class="pricing-tier">Founding Member</div>
-        <div class="pricing-price">£49 <span>lifetime</span></div>
-        <div class="pricing-desc">Community-building strategy. 10–50 early adopters who co-shape the product.</div>
+        <div class="pricing-price">£49 <span>after free period</span></div>
+        <div class="pricing-desc">3 months free unlimited access, then lifetime membership for £49. In exchange: honest feedback that shapes the product.</div>
         <ul class="pricing-features">
-          <li>All features, lifetime access</li>
+          <li>3 months free — full unlimited access</li>
+          <li>Option to convert to lifetime (£49)</li>
           <li>10 friend codes to share</li>
-          <li>Direct product input</li>
-          <li>First access to new features</li>
+          <li>Real input into product direction</li>
           <li>Named in acknowledgements</li>
         </ul>
       </div>
@@ -1786,14 +1786,20 @@
       <div class="form-header">
         <div class="section-label" id="signup-form-label">Founding Member</div>
         <h3 id="signup-modal-title">Join Alongside before everyone else</h3>
-        <p id="signup-form-desc">We're looking for 10–50 people who'll use the app honestly and help shape what it becomes. No spam, no obligation — just a conversation.</p>
+        <p id="signup-form-desc">We're looking for 10–50 people who'll use Alongside during beta and tell us honestly how it feels — what works, what doesn't, and what's missing. In return, you get 3 months of free unlimited access, then the option to become a lifetime member for £49. Your feedback will genuinely shape the direction of the app. I can't promise to adopt every suggestion, but Founding Members will have a real and significant role in building something that works for people like us.</p>
       </div>
 
       <div class="form-benefits" id="signup-benefits">
-        <div class="form-benefit">Lifetime access for £49</div>
+        <div class="form-benefit">3 months free unlimited access</div>
+        <div class="form-benefit">Option to join as lifetime member (£49)</div>
         <div class="form-benefit">10 friend codes to share</div>
-        <div class="form-benefit">Direct input into the product</div>
-        <div class="form-benefit">First access to new features</div>
+        <div class="form-benefit">Real input into the product's direction</div>
+      </div>
+
+      <div style="background: var(--teal-pale); border-left: 3px solid var(--teal); border-radius: 0 8px 8px 0; padding: 0.9rem 1.1rem; margin-bottom: 1.25rem;" id="signup-commitment-note">
+        <p style="font-size: 0.83rem; color: var(--teal-dark); line-height: 1.6; margin: 0;">
+          <strong>What we ask in return:</strong> regular feedback on your experience — what helped, what frustrated you, what you wished existed. I can't promise to build everything suggested, but every Founding Member's voice will genuinely shape what Alongside becomes.
+        </p>
       </div>
 
       <form id="alongside-signup-form" novalidate>
@@ -1847,7 +1853,7 @@
           <span id="submit-spinner" class="spinner" style="display:none;" aria-hidden="true"></span>
         </button>
         <p class="form-note">Your details are only used to follow up about Alongside. No marketing lists, no data sharing. Powered by Formspree.</p>
-        <div class="form-error" id="signup-error" role="alert">Something went wrong — please try again, or email hello@buildnewhabits.co.uk directly.</div>
+        <div class="form-error" id="signup-error" role="alert">Something went wrong — please try again, or email <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1d75787171725d7f6874717973786a757c7f74696e337e72336876">[email&#160;protected]</a> directly.</div>
       </form>
     </div>
 
@@ -1880,7 +1886,7 @@
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ─── View toggle ───
   function setView(mode) {
     const body = document.body;
@@ -1971,7 +1977,7 @@
   // ─── Signup modal ───
   // ⚠️  SETUP: Replace YOUR_FORMSPREE_ID below with your actual Formspree form ID
   //     e.g. if your endpoint is https://formspree.io/f/xabcdefg  →  use 'xabcdefg'
-  const FORMSPREE_ID = 'mzdanygp';
+  const FORMSPREE_ID = 'YOUR_FORMSPREE_ID';
 
   function showSignupModal(type) {
     const modal = document.getElementById('signup-modal');
@@ -2002,6 +2008,7 @@
       benefits.style.display = 'none';
       howGroup.style.display = 'none';
       identityGroup.style.display = 'none';
+      document.getElementById('signup-commitment-note').style.display = 'none';
       msgLabel.innerHTML = 'Tell us about your interest <span style="font-weight:400;color:var(--muted);">(optional)</span>';
       subject.value = 'Investor / Partner Enquiry — Alongside';
       typeHidden.value = 'investor';
@@ -2009,10 +2016,11 @@
     } else {
       label.textContent = 'Founding Member';
       title.textContent = 'Join Alongside before everyone else';
-      desc.textContent = 'We\'re looking for 10–50 people who\'ll use the app honestly and help shape what it becomes. No spam, no obligation — just a conversation.';
+      desc.textContent = 'We\'re looking for 10–50 people who\'ll use Alongside during beta and tell us honestly how it feels — what works, what doesn\'t, and what\'s missing. In return, you get 3 months of free unlimited access, then the option to become a lifetime member for £49. Your feedback will genuinely shape the direction of the app.';
       benefits.style.display = '';
       howGroup.style.display = '';
       identityGroup.style.display = '';
+      document.getElementById('signup-commitment-note').style.display = '';
       msgLabel.innerHTML = 'Tell us a little about yourself <span style="font-weight:400;color:var(--muted);">(optional)</span>';
       subject.value = 'Founding Member Interest — Alongside';
       typeHidden.value = 'founding';
@@ -2089,13 +2097,4 @@
       submitBtn.disabled = false;
       submitLabel.style.display = '';
       spinner.style.display = 'none';
-      errorEl.textContent = 'Something went wrong — please try again, or email hello@buildnewhabits.co.uk directly.';
-      errorEl.style.display = 'block';
-    }
-  });
-
-  // Init as desktop
-  document.body.classList.add('desktop-view');
-</script>
-</body>
-</html>
+      errorEl.textContent =
