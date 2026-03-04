@@ -51,12 +51,12 @@
 
   /* ─── NAV ─── */
   nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(248,252,252,0.92);
+    position: fixed; top: 34px; left: 0; right: 0; z-index: 100;
+    background: rgba(248,252,252,0.96);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid rgba(27,107,107,0.12);
     padding: 0 2rem;
-    height: 64px;
+    height: 56px;
     display: flex; align-items: center; justify-content: space-between;
   }
   .nav-logo {
@@ -102,8 +102,10 @@
   .nav-cta:hover { background: var(--teal-mid); transform: translateY(-1px); }
 
   /* ─── PANELS ─── */
-  .panel { display: none; padding-top: 64px; min-height: 100vh; }
+  .panel { display: none; padding-top: 90px; min-height: 100vh; }
   .panel.active { display: block; }
+  body.desktop-view .panel { padding-top: 90px; }
+  body.mobile-view .panel { padding-top: 90px; }
 
   /* ─── HERO ─── */
   .hero {
@@ -742,7 +744,91 @@
   }
   .modal-btn-sec:hover { background: var(--teal-light); color: var(--teal); }
 
-  /* ─── VIEW TOGGLE ─── */
+  /* ─── SIGNUP FORM ─── */
+  .signup-modal .modal { max-width: 580px; padding: 2.25rem; }
+  .form-header { margin-bottom: 1.5rem; }
+  .form-header .section-label { margin-bottom: 0.4rem; }
+  .form-header h3 { font-family: var(--serif); font-size: 1.55rem; color: var(--dark); line-height: 1.2; margin-bottom: 0.5rem; }
+  .form-header p { font-size: 0.87rem; color: var(--mid); line-height: 1.6; margin: 0; }
+  .form-benefits {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0.5rem; margin: 1.25rem 0 1.5rem;
+  }
+  .form-benefit {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 0.82rem; color: var(--mid);
+    background: var(--teal-pale);
+    border-radius: 8px; padding: 8px 10px;
+  }
+  .form-benefit::before { content: '✓'; color: var(--teal); font-weight: 700; flex-shrink: 0; }
+  .form-group { margin-bottom: 1rem; }
+  .form-group label {
+    display: block; font-size: 0.82rem; font-weight: 600;
+    color: var(--dark); margin-bottom: 5px;
+  }
+  .form-group label span { color: var(--teal); }
+  .form-input, .form-textarea, .form-select {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid var(--pale);
+    border-radius: 9px;
+    font-family: var(--sans); font-size: 0.9rem;
+    color: var(--dark); background: var(--bg);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+  }
+  .form-input:focus, .form-textarea:focus, .form-select:focus {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(27,107,107,0.12);
+    background: var(--white);
+  }
+  .form-textarea { resize: vertical; min-height: 90px; line-height: 1.5; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .form-checkbox-group { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 4px; }
+  .form-checkbox {
+    display: flex; align-items: center; gap: 6px;
+    background: var(--pale); border-radius: 7px; padding: 7px 12px;
+    font-size: 0.82rem; color: var(--mid); cursor: pointer;
+    border: 1.5px solid transparent; transition: all 0.15s;
+    user-select: none;
+  }
+  .form-checkbox input { position: absolute; opacity: 0; width: 0; height: 0; }
+  .form-checkbox:has(input:checked) {
+    background: var(--teal-light); border-color: var(--teal); color: var(--teal-dark);
+  }
+  .form-submit {
+    width: 100%; padding: 14px;
+    background: var(--teal); color: var(--white);
+    border: none; border-radius: 10px;
+    font-family: var(--sans); font-size: 0.95rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    margin-top: 1.25rem;
+  }
+  .form-submit:hover { background: var(--teal-mid); transform: translateY(-1px); }
+  .form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+  .form-note { font-size: 0.76rem; color: var(--muted); text-align: center; margin-top: 0.75rem; line-height: 1.5; }
+  /* Success state */
+  .form-success {
+    display: none; text-align: center; padding: 1rem 0 0.5rem;
+  }
+  .form-success-icon {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: var(--teal-light); margin: 0 auto 1rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.75rem;
+  }
+  .form-success h4 { font-family: var(--serif); font-size: 1.4rem; color: var(--dark); margin-bottom: 0.5rem; }
+  .form-success p { font-size: 0.9rem; color: var(--mid); line-height: 1.6; }
+  /* Error message */
+  .form-error { display: none; background: #FEE8E6; border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.84rem; color: #C0392B; margin-top: 0.75rem; }
+  /* Spinner */
+  .spinner { width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.7s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  /* Mobile form adjustments */
+  body.mobile-view .form-row { grid-template-columns: 1fr; }
+  body.mobile-view .form-benefits { grid-template-columns: 1fr; }
+  @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } .form-benefits { grid-template-columns: 1fr; } }
   .view-toggle {
     display: flex; gap: 2px;
     background: var(--pale);
@@ -786,6 +872,7 @@
   body.mobile-view nav {
     border-radius: 0;
     padding: 0 1rem;
+    top: 0;
   }
   body.mobile-view .nav-tabs { display: none !important; }
   body.mobile-view .mobile-nav-menu { display: flex !important; }
@@ -796,28 +883,67 @@
   /* Mobile layout overrides */
   body.mobile-view .hero-content {
     grid-template-columns: 1fr;
-    padding: 2rem 1.5rem;
+    padding: 2rem 1.25rem;
     gap: 2rem;
   }
   body.mobile-view .hero-phone { display: flex !important; }
-  body.mobile-view .hero h1 { font-size: 1.9rem; }
+  body.mobile-view .hero h1 { font-size: 1.75rem; }
+  body.mobile-view .hero-sub { font-size: 0.92rem; }
   body.mobile-view .hero-stats { grid-template-columns: repeat(3,1fr); }
+  body.mobile-view .hero-stat-num { font-size: 1.3rem; }
+  body.mobile-view .hero-stat-label { font-size: 0.62rem; }
+  body.mobile-view .hero-actions { flex-direction: column; }
+  body.mobile-view .btn-primary, body.mobile-view .btn-secondary { width: 100%; justify-content: center; padding: 12px 16px; font-size: 0.9rem; }
   body.mobile-view .card-grid-3 { grid-template-columns: 1fr; }
   body.mobile-view .card-grid-2 { grid-template-columns: 1fr; }
-  body.mobile-view .section { padding: 2.5rem 1.25rem; }
-  body.mobile-view .stat-strip { padding: 2rem 1rem; }
+  body.mobile-view .card { padding: 1.25rem; }
+  body.mobile-view .section { padding: 2rem 1rem; }
+  body.mobile-view .section-title { font-size: 1.5rem; }
+  body.mobile-view .section-sub { font-size: 0.88rem; margin-bottom: 1.5rem; }
+  body.mobile-view .stat-strip { padding: 1.5rem 1rem; }
   body.mobile-view .stat-strip-inner { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  body.mobile-view .stat-num { font-size: 1.6rem; }
   body.mobile-view .install-steps { grid-template-columns: 1fr; }
   body.mobile-view .investor-grid { grid-template-columns: 1fr; }
   body.mobile-view .pricing-grid { grid-template-columns: 1fr; }
+  body.mobile-view .pricing-card.featured::before { display: none; }
   body.mobile-view .framework-item { flex-direction: column; gap: 0.75rem; }
-  body.mobile-view .download-hero { padding: 1.75rem; }
+  body.mobile-view .download-hero { padding: 1.5rem; border-radius: 12px; }
+  body.mobile-view .download-hero h2 { font-size: 1.4rem; }
   body.mobile-view .download-hero::after { display: none; }
   body.mobile-view .download-btn-group { flex-direction: column; }
+  body.mobile-view .btn-download, body.mobile-view .btn-open { width: 100%; justify-content: center; }
   body.mobile-view .timeline-list { padding-left: 0; }
-  body.mobile-view footer { border-radius: 0; }
-  body.mobile-view .comp-table { font-size: 0.78rem; }
-  body.mobile-view .comp-table th, body.mobile-view .comp-table td { padding: 8px 10px; }
+  body.mobile-view .timeline-item::before { left: 11px; }
+  body.mobile-view .timeline-dot { width: 24px; height: 24px; font-size: 0.6rem; flex-shrink: 0; }
+  body.mobile-view footer { border-radius: 0; padding: 2rem 1rem; }
+  body.mobile-view .footer-links { gap: 1rem; font-size: 0.75rem; }
+  /* Tables — scroll horizontally on mobile, constrained width */
+  body.mobile-view .comp-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; width: 100%; }
+  body.mobile-view .comp-table { font-size: 0.75rem; min-width: 480px; }
+  body.mobile-view .comp-table th, body.mobile-view .comp-table td { padding: 7px 9px; }
+  /* Quote blocks */
+  body.mobile-view .quote-block { padding: 1rem 1.25rem; }
+  body.mobile-view .quote-text { font-size: 1rem; }
+  /* Research gap callout */
+  body.mobile-view .research-gap { padding: 1.5rem; }
+  body.mobile-view .research-gap h3 { font-size: 1.1rem; }
+  /* Platform tabs */
+  body.mobile-view .platform-tabs { flex-wrap: wrap; gap: 6px; }
+  body.mobile-view .platform-tab { font-size: 0.78rem; padding: 7px 12px; }
+  /* Data notice */
+  body.mobile-view .data-notice { flex-direction: column; gap: 0.5rem; }
+  /* Investor cards */
+  body.mobile-view .investor-card-num { font-size: 1.5rem; }
+  /* Ref list */
+  body.mobile-view .ref-item { font-size: 0.78rem; flex-direction: column; gap: 2px; }
+  /* General overflow safety net for mobile frame */
+  body.mobile-view .site-frame * { max-width: 100%; }
+  body.mobile-view .site-frame img { width: 100%; height: auto; }
+  /* CTA section */
+  body.mobile-view #panel-home > section:last-of-type { padding: 2.5rem 1rem; }
+  body.mobile-view #panel-home > section:last-of-type div { flex-direction: column; }
+  body.mobile-view #panel-home > section:last-of-type .btn-primary { width: 100%; justify-content: center; }
 
   /* Mobile frame top bar (shows device chrome) */
   .mobile-frame-bar {
@@ -873,19 +999,27 @@
 
   /* ─── RESPONSIVE (real mobile screens) ─── */
   @media (max-width: 900px) {
-    body:not(.mobile-view) .hero-content { grid-template-columns: 1fr; padding: 2.5rem 1.5rem; }
+    body:not(.mobile-view) nav { top: 0; }
+    body:not(.mobile-view) #view-toggle-bar { display: none !important; }
+    body:not(.mobile-view) .panel { padding-top: 56px; }
+    body:not(.mobile-view) .hero-content { grid-template-columns: 1fr; padding: 2rem 1.25rem; }
     body:not(.mobile-view) .hero-phone { display: none; }
     body:not(.mobile-view) .nav-tabs { display: none; }
     body:not(.mobile-view) .mobile-nav-bar { display: flex; }
     body:not(.mobile-view) .nav-cta { font-size: 0.8rem; padding: 7px 14px; }
-    body:not(.mobile-view) .hero h1 { font-size: 2rem; }
-    body:not(.mobile-view) .card-grid-3 { grid-template-columns: 1fr; }
-    body:not(.mobile-view) .section { padding: 2.5rem 1.25rem; }
+    body:not(.mobile-view) .hero h1 { font-size: 1.9rem; }
+    body:not(.mobile-view) .hero-actions { flex-direction: column; }
+    body:not(.mobile-view) .card-grid-3, body:not(.mobile-view) .card-grid-2 { grid-template-columns: 1fr; }
+    body:not(.mobile-view) .section { padding: 2rem 1rem; }
     body:not(.mobile-view) .stat-strip-inner { grid-template-columns: 1fr 1fr; }
     body:not(.mobile-view) .install-steps { grid-template-columns: 1fr; }
     body:not(.mobile-view) .investor-grid { grid-template-columns: 1fr; }
     body:not(.mobile-view) .pricing-grid { grid-template-columns: 1fr; }
     body:not(.mobile-view) .view-toggle { display: none; }
+    body:not(.mobile-view) .comp-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    body:not(.mobile-view) .comp-table { min-width: 480px; font-size: 0.8rem; }
+    body:not(.mobile-view) .download-btn-group { flex-direction: column; }
+    body:not(.mobile-view) .framework-item { flex-direction: column; }
   }
 
   /* ─── ANIMATIONS ─── */
@@ -917,8 +1051,8 @@
 <body>
 
 <!-- ─── VIEW TOGGLE WRAPPER ─── -->
-<div id="view-toggle-bar" style="position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:center;background:#0d1f1f;padding:6px 0;gap:0.75rem;align-items:center;">
-  <span style="font-family:var(--mono);font-size:0.7rem;color:rgba(255,255,255,0.45);letter-spacing:0.06em;text-transform:uppercase;">Preview:</span>
+<div id="view-toggle-bar" style="position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:center;background:#0d1f1f;padding:5px 1rem;gap:0.75rem;align-items:center;height:34px;box-sizing:border-box;">
+  <span style="font-family:var(--mono);font-size:0.68rem;color:rgba(255,255,255,0.4);letter-spacing:0.06em;text-transform:uppercase;">Preview:</span>
   <div class="view-toggle">
     <button class="view-toggle-btn active" id="btn-desktop" onclick="setView('desktop')" aria-label="Desktop view" aria-pressed="true">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
@@ -929,10 +1063,10 @@
       Mobile
     </button>
   </div>
-  <a href="https://build-new-habits.github.io/alongside-app/" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:0.7rem;color:rgba(255,255,255,0.4);letter-spacing:0.04em;margin-left:0.5rem;" aria-label="Open live app">↗ Live app</a>
+  <a href="https://build-new-habits.github.io/alongside-app/" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:0.68rem;color:rgba(255,255,255,0.35);letter-spacing:0.04em;margin-left:0.25rem;" aria-label="Open live app">↗ Live app</a>
 </div>
 
-<div class="site-frame" id="site-frame" style="margin-top:38px;">
+<div class="site-frame" id="site-frame" style="margin-top:34px;">
 
 <!-- ─── NAV ─── -->
 <nav role="navigation" aria-label="Main navigation">
@@ -1147,7 +1281,7 @@
 
     <h2 style="font-family: var(--serif); font-size: 1.5rem; margin: 3rem 0 1rem; color: var(--dark);">Why people abandon — and what Alongside does differently</h2>
     <p style="color: var(--mid); font-size: 0.92rem; margin-bottom: 1.5rem; line-height: 1.7;">Research identifies two abandonment phases: an initial rapid dropout driven by immediate disappointment, and a slower disengagement over weeks. Each reason maps directly to a design decision in Alongside.</p>
-    <div style="overflow-x: auto;">
+    <div class="comp-table-wrap" style="overflow-x: auto;">
       <table class="comp-table" aria-label="Abandonment reasons and Alongside responses">
         <thead>
           <tr>
@@ -1287,7 +1421,7 @@
 
     <h2 style="font-family: var(--serif); font-size: 1.6rem; margin: 4rem 0 1rem; color: var(--dark);">The prohibited design patterns</h2>
     <p style="color: var(--mid); font-size: 0.92rem; margin-bottom: 1.5rem; line-height: 1.7;">These are features that are explicitly banned from Alongside — not because they're absent, but because they have been actively considered and deliberately removed.</p>
-    <div style="overflow-x: auto;">
+    <div class="comp-table-wrap" style="overflow-x: auto;">
       <table class="comp-table" aria-label="Prohibited design patterns">
         <thead>
           <tr><th>Pattern</th><th>Why it's prohibited</th><th>What Alongside does instead</th></tr>
@@ -1430,7 +1564,7 @@
     <div style="margin-top: 3rem; padding: 2rem; background: var(--teal-pale); border-radius: var(--radius); text-align: center;">
       <h3 style="font-family: var(--serif); font-size: 1.3rem; color: var(--dark); margin-bottom: 0.5rem;">Become a Founding Member</h3>
       <p style="color: var(--mid); font-size: 0.9rem; max-width: 480px; margin: 0 auto 1.5rem; line-height: 1.7;">Alongside is in beta. Founding Members get lifetime access for £49, 10 friend codes to share, and direct input into the product's future. We're looking for 10–50 people who'll use the app daily and tell us honestly what works and what doesn't.</p>
-      <a class="btn-primary" style="background: var(--teal); color: white; display: inline-flex;" href="/cdn-cgi/l/email-protection#1f777a7373705f7d6a76737b717a68777e7d766b6c317c70316a74206c6a7d757a7c6b2259706a717b7671783a2d2f527a727d7a6d3a2d2f56716b7a6d7a6c6b" aria-label="Email to express interest in founding membership">Express interest in Founding Membership</a>
+      <button class="btn-primary" style="background: var(--teal); color: white; display: inline-flex; border: none;" onclick="showSignupModal('founding')" aria-label="Apply to become a Founding Member">Apply to be a Founding Member →</button>
     </div>
   </section>
 </div>
@@ -1581,7 +1715,7 @@
       <h3 style="font-family: var(--serif); font-size: 1.4rem; margin-bottom: 0.75rem;">Get in touch</h3>
       <p style="color: rgba(255,255,255,0.75); margin-bottom: 1rem; line-height: 1.7;">Alongside is actively seeking mentoring partnerships, academic research collaborations, and connections to neurodivergent health organisations. Full business plan and 12-document product specification available on request.</p>
       <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-        <a class="btn-download" href="/cdn-cgi/l/email-protection#452d2029292a0527302c29212b20322d24272c31366b262a6b302e7a3630272f2026317804292a2b22362c21206077750c2b332036312a37607775002b34302c373c" aria-label="Email Build New Habits">Contact Graeme Wright</a>
+        <button class="btn-download" onclick="showSignupModal('investor')" aria-label="Contact Graeme Wright">Contact Graeme Wright</button>
         <a class="btn-open" href="https://build-new-habits.github.io/alongside-app/" target="_blank" rel="noopener noreferrer" aria-label="Open live demo in new tab">View Live Demo ↗</a>
       </div>
     </div>
@@ -1592,14 +1726,14 @@
 <footer role="contentinfo">
   <div class="footer-logo">Alongside</div>
   <p>Build New Habits · Compassionate Digital Coaching</p>
-  <p>Founded by Graeme Wright · Weston-super-Mare, England</p>
+  <p>Founded by Graeme Wright · Taunton, England</p>
   <p style="margin-top: 0.5rem; font-size: 0.75rem; color: rgba(255,255,255,0.3);">All user data is stored locally on your device. Alongside collects no personal information.</p>
   <div class="footer-links">
     <a href="https://build-new-habits.github.io/alongside-app/" target="_blank" rel="noopener noreferrer">Live App ↗</a>
     <button onclick="showPanel('research')" style="background:none; color: rgba(255,255,255,0.4); font-size: 0.82rem; cursor:pointer;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Research</button>
     <button onclick="showPanel('download')" style="background:none; color: rgba(255,255,255,0.4); font-size: 0.82rem; cursor:pointer;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Get the App</button>
     <button onclick="showPanel('investor')" style="background:none; color: rgba(255,255,255,0.4); font-size: 0.82rem; cursor:pointer;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Investors</button>
-    <a href="/cdn-cgi/l/email-protection#39515c555556795b4c50555d575c4e51585b504d4a175a56174c52">Contact</a>
+    <button onclick="showSignupModal('founding')" style="background:none; color: rgba(255,255,255,0.4); font-size: 0.82rem; cursor:pointer;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Contact</button>
   </div>
 </footer>
 
@@ -1630,6 +1764,106 @@
 </nav>
 
 </div><!-- end .site-frame -->
+
+<!-- ────────────────────────────────────────────────────
+  FOUNDING MEMBER / CONTACT SIGN-UP FORM
+  
+  HOW TO CONNECT THIS TO FORMSPREE:
+  1. Go to https://formspree.io and create a free account
+  2. Click "New Form", name it "Alongside Sign-ups"
+  3. Copy your form endpoint ID — looks like: xabcdefg
+  4. Replace YOUR_FORMSPREE_ID on the form action line below
+  5. Formspree emails you every submission + stores in dashboard
+  6. Free tier: 50 submissions/month — plenty to start
+──────────────────────────────────────────────────── -->
+
+<div class="modal-overlay signup-modal" id="signup-modal" role="dialog" aria-modal="true" aria-labelledby="signup-modal-title" onclick="if(event.target===this)closeSignupModal()">
+  <div class="modal" style="max-width:580px; overflow-y:auto; max-height:90vh;">
+    <button class="modal-close" onclick="closeSignupModal()" aria-label="Close sign-up form">✕</button>
+
+    <!-- Form view -->
+    <div id="signup-form-view">
+      <div class="form-header">
+        <div class="section-label" id="signup-form-label">Founding Member</div>
+        <h3 id="signup-modal-title">Join Alongside before everyone else</h3>
+        <p id="signup-form-desc">We're looking for 10–50 people who'll use the app honestly and help shape what it becomes. No spam, no obligation — just a conversation.</p>
+      </div>
+
+      <div class="form-benefits" id="signup-benefits">
+        <div class="form-benefit">Lifetime access for £49</div>
+        <div class="form-benefit">10 friend codes to share</div>
+        <div class="form-benefit">Direct input into the product</div>
+        <div class="form-benefit">First access to new features</div>
+      </div>
+
+      <form id="alongside-signup-form" novalidate>
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+        <input type="hidden" name="_subject" id="form-subject" value="Founding Member Interest — Alongside">
+        <input type="hidden" name="form_type" id="form-type-hidden" value="founding">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="signup-name">Your name <span>*</span></label>
+            <input type="text" id="signup-name" name="name" class="form-input" placeholder="First name is fine" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="signup-email">Email address <span>*</span></label>
+            <input type="email" id="signup-email" name="email" class="form-input" placeholder="you@example.com" required autocomplete="email">
+          </div>
+        </div>
+
+        <div class="form-group" id="signup-how-group">
+          <label for="signup-how">How did you hear about Alongside?</label>
+          <select id="signup-how" name="how_heard" class="form-select">
+            <option value="" disabled selected>Choose one…</option>
+            <option value="reddit">Reddit (ADHD / autism / neurodivergent community)</option>
+            <option value="facebook">Facebook group</option>
+            <option value="instagram">Instagram / TikTok</option>
+            <option value="friend">A friend shared it with me</option>
+            <option value="search">Search / found it myself</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="signup-identity-group">
+          <label>Which describes you? <span style="font-weight:400;color:var(--muted);">(tick all that apply)</span></label>
+          <div class="form-checkbox-group" role="group" aria-label="Identity options">
+            <label class="form-checkbox"><input type="checkbox" name="identity" value="adhd"> ADHD</label>
+            <label class="form-checkbox"><input type="checkbox" name="identity" value="autism"> Autism / AuDHD</label>
+            <label class="form-checkbox"><input type="checkbox" name="identity" value="anxiety"> Anxiety / depression</label>
+            <label class="form-checkbox"><input type="checkbox" name="identity" value="hormonal"> Hormonal change</label>
+            <label class="form-checkbox"><input type="checkbox" name="identity" value="burnout"> Burnout / chronic fatigue</label>
+            <label class="form-checkbox"><input type="checkbox" name="identity" value="other_nd"> Other / prefer not to say</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="signup-message" id="signup-message-label">Tell us a little about yourself <span style="font-weight:400;color:var(--muted);">(optional)</span></label>
+          <textarea id="signup-message" name="message" class="form-textarea" placeholder="Have you tried other fitness apps? What's worked or not worked for you? Anything you'd want Alongside to know." rows="3"></textarea>
+        </div>
+
+        <button type="submit" class="form-submit" id="signup-submit">
+          <span id="submit-label">Send my application →</span>
+          <span id="submit-spinner" class="spinner" style="display:none;" aria-hidden="true"></span>
+        </button>
+        <p class="form-note">Your details are only used to follow up about Alongside. No marketing lists, no data sharing. Powered by Formspree.</p>
+        <div class="form-error" id="signup-error" role="alert">Something went wrong — please try again, or email hello@buildnewhabits.co.uk directly.</div>
+      </form>
+    </div>
+
+    <!-- Success view -->
+    <div class="form-success" id="signup-success" role="status" aria-live="polite">
+      <div class="form-success-icon" aria-hidden="true">✓</div>
+      <h4>You're on the list.</h4>
+      <p>Thank you — Graeme will be in touch personally. In the meantime, you can try the app right now.</p>
+      <div style="display:flex; gap:0.75rem; justify-content:center; flex-wrap:wrap; margin-top:1.5rem;">
+        <a class="modal-btn" href="https://build-new-habits.github.io/alongside-app/" target="_blank" rel="noopener">Try the app ↗</a>
+        <button class="modal-btn-sec" onclick="closeSignupModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal-overlay" id="install-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" onclick="if(event.target===this)closeInstallModal()">
   <div class="modal">
     <button class="modal-close" onclick="closeInstallModal()" aria-label="Close dialog">✕</button>
@@ -1732,6 +1966,132 @@
       if (e.key === 'ArrowRight') { tabs[(i+1)%tabs.length].focus(); tabs[(i+1)%tabs.length].click(); }
       if (e.key === 'ArrowLeft') { tabs[(i-1+tabs.length)%tabs.length].focus(); tabs[(i-1+tabs.length)%tabs.length].click(); }
     });
+  });
+
+  // ─── Signup modal ───
+  // ⚠️  SETUP: Replace YOUR_FORMSPREE_ID below with your actual Formspree form ID
+  //     e.g. if your endpoint is https://formspree.io/f/xabcdefg  →  use 'xabcdefg'
+  const FORMSPREE_ID = 'YOUR_FORMSPREE_ID';
+
+  function showSignupModal(type) {
+    const modal = document.getElementById('signup-modal');
+    const label = document.getElementById('signup-form-label');
+    const title = document.getElementById('signup-modal-title');
+    const desc = document.getElementById('signup-form-desc');
+    const benefits = document.getElementById('signup-benefits');
+    const howGroup = document.getElementById('signup-how-group');
+    const identityGroup = document.getElementById('signup-identity-group');
+    const msgLabel = document.getElementById('signup-message-label');
+    const subject = document.getElementById('form-subject');
+    const typeHidden = document.getElementById('form-type-hidden');
+    const submitLabel = document.getElementById('submit-label');
+
+    // Reset form state
+    document.getElementById('alongside-signup-form').reset();
+    document.getElementById('signup-form-view').style.display = '';
+    document.getElementById('signup-success').style.display = 'none';
+    document.getElementById('signup-error').style.display = 'none';
+    document.getElementById('signup-submit').disabled = false;
+    document.getElementById('submit-spinner').style.display = 'none';
+    document.getElementById('submit-label').style.display = '';
+
+    if (type === 'investor') {
+      label.textContent = 'Investor & Partner Enquiry';
+      title.textContent = 'Get in touch about Alongside';
+      desc.textContent = 'Whether you\'re interested in mentoring, research partnership, investment, or organisational connection — we\'d love to hear from you.';
+      benefits.style.display = 'none';
+      howGroup.style.display = 'none';
+      identityGroup.style.display = 'none';
+      msgLabel.innerHTML = 'Tell us about your interest <span style="font-weight:400;color:var(--muted);">(optional)</span>';
+      subject.value = 'Investor / Partner Enquiry — Alongside';
+      typeHidden.value = 'investor';
+      submitLabel.textContent = 'Send enquiry →';
+    } else {
+      label.textContent = 'Founding Member';
+      title.textContent = 'Join Alongside before everyone else';
+      desc.textContent = 'We\'re looking for 10–50 people who\'ll use the app honestly and help shape what it becomes. No spam, no obligation — just a conversation.';
+      benefits.style.display = '';
+      howGroup.style.display = '';
+      identityGroup.style.display = '';
+      msgLabel.innerHTML = 'Tell us a little about yourself <span style="font-weight:400;color:var(--muted);">(optional)</span>';
+      subject.value = 'Founding Member Interest — Alongside';
+      typeHidden.value = 'founding';
+      submitLabel.textContent = 'Send my application →';
+    }
+
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('signup-name').focus();
+  }
+
+  function closeSignupModal() {
+    document.getElementById('signup-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Form submission
+  document.getElementById('alongside-signup-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const submitBtn = document.getElementById('signup-submit');
+    const submitLabel = document.getElementById('submit-label');
+    const spinner = document.getElementById('submit-spinner');
+    const errorEl = document.getElementById('signup-error');
+
+    // Basic validation
+    const name = document.getElementById('signup-name').value.trim();
+    const email = document.getElementById('signup-email').value.trim();
+    if (!name || !email) {
+      errorEl.textContent = 'Please fill in your name and email address.';
+      errorEl.style.display = 'block';
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      errorEl.textContent = 'Please enter a valid email address.';
+      errorEl.style.display = 'block';
+      return;
+    }
+
+    errorEl.style.display = 'none';
+    submitBtn.disabled = true;
+    submitLabel.style.display = 'none';
+    spinner.style.display = 'inline-block';
+
+    // Collect checkbox values
+    const checked = [...form.querySelectorAll('input[name="identity"]:checked')].map(cb => cb.value);
+    
+    // Build form data
+    const data = new FormData(form);
+    if (checked.length) data.set('identity', checked.join(', '));
+
+    if (FORMSPREE_ID === 'YOUR_FORMSPREE_ID') {
+      // Demo mode — show success without actually submitting
+      setTimeout(() => {
+        document.getElementById('signup-form-view').style.display = 'none';
+        document.getElementById('signup-success').style.display = 'block';
+      }, 800);
+      return;
+    }
+
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        document.getElementById('signup-form-view').style.display = 'none';
+        document.getElementById('signup-success').style.display = 'block';
+      } else {
+        throw new Error('Server error');
+      }
+    } catch(err) {
+      submitBtn.disabled = false;
+      submitLabel.style.display = '';
+      spinner.style.display = 'none';
+      errorEl.textContent = 'Something went wrong — please try again, or email hello@buildnewhabits.co.uk directly.';
+      errorEl.style.display = 'block';
+    }
   });
 
   // Init as desktop
