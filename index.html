@@ -3,1448 +3,1514 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Build New Habits — Grow Into Your Best Self</title>
-<meta name="description" content="Compassionate digital coaching for neurodivergent adults, students, and lifelong learners. Built by an educator. Grounded in evidence.">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Alongside — Fitness coaching for people fitness culture forgot</title>
+<meta name="description" content="Alongside is an adaptive fitness coaching app designed for neurodivergent adults, women navigating hormonal change, and anyone fitness culture has failed.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --forest: #1e3d20;
-  --forest-mid: #2d5a27;
-  --forest-light: #4a8c3f;
-  --sage: #7ab570;
-  --sage-light: #b8d9b2;
-  --cream: #f7f3e8;
-  --cream-dark: #ede8d6;
-  --warm-white: #faf8f2;
-  --brown: #3d2b1f;
-  --amber: #c8860a;
-  --amber-light: #f0c040;
-  --text: #1a1a1a;
-  --text-mid: #4a4a4a;
-  --text-light: #7a7a7a;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'Outfit', sans-serif;
-  background: var(--cream);
-  color: var(--text);
-  overflow-x: hidden;
-  cursor: default;
-}
-
-/* ─── TYPOGRAPHY ─── */
-.serif { font-family: 'Cormorant Garamond', serif; }
-
-/* ─── ANIMATIONS ─── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(32px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-@keyframes growLine {
-  from { scaleY: 0; }
-  to   { scaleY: 1; }
-}
-@keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50%       { transform: translateY(-12px) rotate(1deg); }
-}
-@keyframes grain {
-  0%, 100% { transform: translate(0,0); }
-  10%       { transform: translate(-2%,-3%); }
-  30%       { transform: translate(3%,2%); }
-  50%       { transform: translate(-1%,4%); }
-  70%       { transform: translate(4%,-2%); }
-  90%       { transform: translate(-3%,1%); }
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
-
-/* ─── NAV ─── */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  padding: 1.2rem 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: background 0.4s, backdrop-filter 0.4s, box-shadow 0.4s;
-}
-nav.scrolled {
-  background: rgba(247,243,232,0.92);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 1px 0 rgba(0,0,0,0.08);
-}
-.nav-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--forest);
-  letter-spacing: -0.3px;
-  text-decoration: none;
-}
-.nav-logo span { color: var(--sage); }
-.nav-links {
-  display: flex;
-  gap: 2rem;
-  list-style: none;
-  align-items: center;
-}
-.nav-links a {
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--text-mid);
-  text-decoration: none;
-  letter-spacing: 0.02em;
-  transition: color 0.2s;
-}
-.nav-links a:hover { color: var(--forest); }
-.nav-cta {
-  background: var(--forest) !important;
-  color: white !important;
-  padding: 0.55rem 1.3rem;
-  border-radius: 2px;
-  font-weight: 600 !important;
-  transition: background 0.2s !important;
-}
-.nav-cta:hover { background: var(--forest-light) !important; }
-
-/* ─── HERO ─── */
-.hero {
-  min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-left {
-  background: var(--forest);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 8rem 5rem 6rem 5rem;
-  position: relative;
-  z-index: 2;
-}
-
-/* Grain texture overlay */
-.hero-left::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  opacity: 0.3;
-  pointer-events: none;
-  animation: grain 8s steps(1) infinite;
-}
-
-.hero-eyebrow {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--sage);
-  margin-bottom: 1.5rem;
-  animation: fadeUp 0.8s 0.2s both;
-}
-
-.hero-headline {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3rem, 5vw, 4.5rem);
-  font-weight: 700;
-  color: white;
-  line-height: 1.05;
-  letter-spacing: -1px;
-  margin-bottom: 1.8rem;
-  animation: fadeUp 0.8s 0.35s both;
-}
-
-.hero-headline em {
-  font-style: italic;
-  color: var(--sage);
-}
-
-.hero-body {
-  font-size: 1rem;
-  color: rgba(255,255,255,0.7);
-  line-height: 1.8;
-  max-width: 420px;
-  margin-bottom: 2.5rem;
-  font-weight: 300;
-  animation: fadeUp 0.8s 0.5s both;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  animation: fadeUp 0.8s 0.65s both;
-}
-
-.btn-primary {
-  background: var(--sage);
-  color: var(--forest);
-  padding: 0.9rem 2rem;
-  border-radius: 2px;
-  font-weight: 700;
-  font-size: 0.9rem;
-  text-decoration: none;
-  letter-spacing: 0.03em;
-  transition: background 0.2s, transform 0.2s;
-  display: inline-block;
-}
-.btn-primary:hover { background: var(--amber-light); transform: translateY(-1px); }
-
-.btn-ghost {
-  color: rgba(255,255,255,0.7);
-  font-size: 0.85rem;
-  font-weight: 500;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255,255,255,0.3);
-  padding-bottom: 2px;
-  transition: color 0.2s, border-color 0.2s;
-}
-.btn-ghost:hover { color: white; border-color: white; }
-
-.hero-credentials {
-  margin-top: 3.5rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  display: flex;
-  gap: 2rem;
-  animation: fadeUp 0.8s 0.8s both;
-}
-
-.hero-stat .number {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--sage);
-  line-height: 1;
-}
-.hero-stat .label {
-  font-size: 0.72rem;
-  color: rgba(255,255,255,0.5);
-  margin-top: 0.2rem;
-  font-weight: 400;
-}
-
-/* Hero right — visual */
-.hero-right {
-  background: var(--cream-dark);
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-right-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Large decorative botanical background */
-.hero-botanical {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.hero-botanical svg {
-  width: 110%;
-  height: 110%;
-  opacity: 0.12;
-}
-
-/* Floating cards */
-.floating-cards {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 2rem;
-  animation: fadeIn 1s 0.8s both;
-}
-
-.app-card {
-  background: white;
-  border-radius: 8px;
-  padding: 1.1rem 1.4rem;
-  box-shadow: 0 8px 32px rgba(30,61,32,0.12), 0 2px 8px rgba(0,0,0,0.06);
-  max-width: 280px;
-}
-
-.app-card:nth-child(2) {
-  margin-left: 2.5rem;
-  animation: float 6s ease-in-out infinite;
-}
-.app-card:nth-child(1) {
-  animation: float 7s ease-in-out 1s infinite;
-}
-.app-card:nth-child(3) {
-  margin-left: 1rem;
-  animation: float 5.5s ease-in-out 2s infinite;
-}
-
-.app-card .card-tag {
-  font-size: 0.62rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--forest-light);
-  margin-bottom: 0.5rem;
-}
-
-.app-card .card-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--forest);
-  margin-bottom: 0.4rem;
-}
-
-.app-card .card-body {
-  font-size: 0.75rem;
-  color: var(--text-light);
-  line-height: 1.5;
-}
-
-.app-card .card-bar {
-  height: 4px;
-  background: var(--cream-dark);
-  border-radius: 2px;
-  margin-top: 0.7rem;
-  overflow: hidden;
-}
-
-.app-card .card-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--forest-light), var(--sage));
-  border-radius: 2px;
-}
-
-/* ─── DIAGONAL DIVIDER ─── */
-.diagonal {
-  height: 80px;
-  background: var(--forest);
-  clip-path: polygon(0 0, 100% 0, 100% 40%, 0 100%);
-  margin-bottom: -2px;
-}
-
-/* ─── SECTION: PHILOSOPHY ─── */
-.section-philosophy {
-  background: var(--warm-white);
-  padding: 7rem 5rem;
-  position: relative;
-}
-
-.section-philosophy::before {
-  content: '"';
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 20rem;
-  color: var(--cream-dark);
-  position: absolute;
-  top: -2rem;
-  left: 3rem;
-  line-height: 1;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.philosophy-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5rem;
-  max-width: 1100px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-}
-
-.philosophy-left .section-eyebrow {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--forest-light);
-  margin-bottom: 1rem;
-}
-
-.philosophy-left h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  font-weight: 700;
-  color: var(--forest);
-  line-height: 1.15;
-  letter-spacing: -0.5px;
-  margin-bottom: 1.5rem;
-}
-
-.philosophy-left p {
-  font-size: 1rem;
-  color: var(--text-mid);
-  line-height: 1.85;
-  font-weight: 300;
-  margin-bottom: 1rem;
-}
-
-.philosophy-left blockquote {
-  border-left: 3px solid var(--sage);
-  padding: 1rem 1.4rem;
-  margin-top: 1.5rem;
-  background: var(--cream);
-  border-radius: 0 4px 4px 0;
-}
-
-.philosophy-left blockquote p {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.2rem;
-  font-style: italic;
-  color: var(--forest);
-  margin-bottom: 0.4rem;
-}
-
-.philosophy-left blockquote cite {
-  font-size: 0.75rem;
-  color: var(--text-light);
-  font-style: normal;
-}
-
-.principles-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.principle-item {
-  display: flex;
-  gap: 1.2rem;
-  align-items: flex-start;
-  padding: 1.2rem;
-  border-radius: 4px;
-  transition: background 0.2s;
-}
-.principle-item:hover { background: var(--cream); }
-
-.principle-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--forest);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  flex-shrink: 0;
-}
-
-.principle-text h4 {
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: var(--forest);
-  margin-bottom: 0.3rem;
-}
-
-.principle-text p {
-  font-size: 0.82rem;
-  color: var(--text-light);
-  line-height: 1.6;
-  margin: 0;
-}
-
-/* ─── SECTION: FOUNDER ─── */
-.section-founder {
-  background: var(--forest);
-  padding: 7rem 5rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.section-founder::after {
-  content: 'EDUCATOR';
-  position: absolute;
-  right: -2rem;
-  top: 50%;
-  transform: translateY(-50%) rotate(90deg);
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 8rem;
-  font-weight: 700;
-  color: rgba(255,255,255,0.03);
-  pointer-events: none;
-  white-space: nowrap;
-}
-
-.founder-grid {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 5rem;
-  max-width: 1100px;
-  margin: 0 auto;
-  align-items: start;
-}
-
-.founder-portrait {
-  width: 240px;
-  flex-shrink: 0;
-}
-
-.portrait-frame {
-  width: 220px;
-  height: 270px;
-  background: var(--forest-mid);
-  border-radius: 4px;
-  position: relative;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.1);
-}
-
-.portrait-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.8rem;
-}
-
-.portrait-initials {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 4rem;
-  font-weight: 700;
-  color: var(--sage);
-  line-height: 1;
-}
-
-.portrait-label {
-  font-size: 0.65rem;
-  color: rgba(255,255,255,0.4);
-  text-align: center;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.portrait-accent {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--forest-light), var(--sage), var(--amber));
-}
-
-.founder-content .section-eyebrow {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--sage);
-  margin-bottom: 1rem;
-}
-
-.founder-content h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2rem, 3.5vw, 2.8rem);
-  font-weight: 700;
-  color: white;
-  line-height: 1.15;
-  margin-bottom: 0.4rem;
-}
-
-.founder-content .founder-role {
-  font-size: 0.85rem;
-  color: var(--sage);
-  font-weight: 500;
-  margin-bottom: 1.8rem;
-}
-
-.founder-content p {
-  font-size: 0.95rem;
-  color: rgba(255,255,255,0.72);
-  line-height: 1.85;
-  font-weight: 300;
-  margin-bottom: 1rem;
-  max-width: 560px;
-}
-
-.credentials-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.8rem;
-  margin-top: 2rem;
-}
-
-.credential {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 4px;
-  padding: 0.9rem 1rem;
-}
-
-.credential .cred-icon {
-  font-size: 1rem;
-  margin-bottom: 0.4rem;
-}
-
-.credential h5 {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: white;
-  margin-bottom: 0.2rem;
-}
-
-.credential p {
-  font-size: 0.72rem;
-  color: rgba(255,255,255,0.5);
-  line-height: 1.4;
-  margin: 0;
-}
-
-/* ─── SECTION: PRODUCTS ─── */
-.section-products {
-  background: var(--cream);
-  padding: 7rem 5rem;
-}
-
-.section-header {
-  max-width: 1100px;
-  margin: 0 auto 4rem;
-}
-
-.section-header .section-eyebrow {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--forest-light);
-  margin-bottom: 1rem;
-}
-
-.section-header h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.2rem, 4vw, 3rem);
-  font-weight: 700;
-  color: var(--forest);
-  line-height: 1.15;
-  max-width: 600px;
-}
-
-.products-grid {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr 1fr;
-  gap: 1.5rem;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.product-card {
-  border-radius: 6px;
-  overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(30,61,32,0.15);
-}
-
-.product-card.featured {
-  background: var(--forest);
-  color: white;
-}
-.product-card.secondary {
-  background: white;
-  border: 1px solid var(--cream-dark);
-}
-.product-card.tertiary {
-  background: var(--cream-dark);
-  border: 1px solid #d8d0b8;
-}
-
-.product-card-inner {
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.product-status {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 0.3rem 0.7rem;
-  border-radius: 20px;
-  display: inline-block;
-  margin-bottom: 1.2rem;
-  align-self: flex-start;
-}
-
-.featured .product-status {
-  background: var(--sage);
-  color: var(--forest);
-}
-.secondary .product-status {
-  background: var(--cream-dark);
-  color: var(--forest-light);
-}
-.tertiary .product-status {
-  background: rgba(255,255,255,0.6);
-  color: var(--text-light);
-}
-
-.product-card h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.6rem;
-  font-weight: 700;
-  margin-bottom: 0.3rem;
-  line-height: 1.1;
-}
-.featured h3 { color: white; }
-.secondary h3, .tertiary h3 { color: var(--forest); }
-
-.product-card .product-audience {
-  font-size: 0.75rem;
-  font-weight: 500;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-.featured .product-audience { color: var(--sage-light); }
-.secondary .product-audience, .tertiary .product-audience { color: var(--text-light); }
-
-.product-card p {
-  font-size: 0.85rem;
-  line-height: 1.75;
-  flex: 1;
-  font-weight: 300;
-}
-.featured p { color: rgba(255,255,255,0.75); }
-.secondary p, .tertiary p { color: var(--text-mid); }
-
-.product-features {
-  list-style: none;
-  margin: 1.2rem 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-.product-features li {
-  font-size: 0.78rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.featured .product-features li { color: rgba(255,255,255,0.8); }
-.secondary .product-features li, .tertiary .product-features li { color: var(--text-mid); }
-
-.product-features li::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  background: var(--sage);
-}
-.secondary .product-features li::before, .tertiary .product-features li::before {
-  background: var(--forest-light);
-}
-
-.product-revenue {
-  margin-top: 1.5rem;
-  padding-top: 1.2rem;
-  border-top: 1px solid rgba(255,255,255,0.12);
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-.featured .product-revenue { color: var(--sage); border-color: rgba(255,255,255,0.1); }
-.secondary .product-revenue { color: var(--forest); border-color: var(--cream-dark); }
-.tertiary .product-revenue { color: var(--forest-mid); border-color: rgba(0,0,0,0.08); }
-
-.product-revenue span {
-  display: block;
-  font-size: 0.68rem;
-  font-weight: 400;
-  margin-top: 0.15rem;
-  opacity: 0.7;
-}
-
-.product-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 1.2rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-decoration: none;
-  color: var(--sage);
-  transition: gap 0.2s;
-}
-.product-link:hover { gap: 0.8rem; }
-.secondary .product-link, .tertiary .product-link { color: var(--forest-light); }
-
-/* ─── SECTION: EVIDENCE ─── */
-.section-evidence {
-  background: var(--cream-dark);
-  padding: 6rem 5rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.evidence-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5rem;
-  align-items: center;
-}
-
-.evidence-content .section-eyebrow {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--forest-light);
-  margin-bottom: 1rem;
-}
-
-.evidence-content h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2rem, 3.5vw, 2.8rem);
-  font-weight: 700;
-  color: var(--forest);
-  line-height: 1.2;
-  margin-bottom: 1.2rem;
-}
-
-.evidence-content p {
-  font-size: 0.92rem;
-  color: var(--text-mid);
-  line-height: 1.85;
-  font-weight: 300;
-}
-
-.framework-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.framework {
-  background: white;
-  border-radius: 4px;
-  padding: 1.1rem 1.3rem;
-  border-left: 3px solid var(--forest-light);
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  transition: border-color 0.2s, transform 0.2s;
-}
-.framework:hover {
-  border-color: var(--amber);
-  transform: translateX(4px);
-}
-
-.framework h4 {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--forest);
-}
-
-.framework p {
-  font-size: 0.75rem;
-  color: var(--text-light);
-  line-height: 1.5;
-}
-
-/* ─── SECTION: CTA ─── */
-.section-cta {
-  background: var(--forest);
-  padding: 7rem 5rem;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.section-cta::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(106,191,94,0.15), transparent);
-  pointer-events: none;
-}
-
-.cta-inner {
-  position: relative;
-  z-index: 1;
-  max-width: 680px;
-  margin: 0 auto;
-}
-
-.cta-inner .section-eyebrow {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--sage);
-  margin-bottom: 1.2rem;
-}
-
-.cta-inner h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.2rem, 4vw, 3.5rem);
-  font-weight: 700;
-  color: white;
-  line-height: 1.15;
-  margin-bottom: 1.2rem;
-}
-
-.cta-inner p {
-  font-size: 1rem;
-  color: rgba(255,255,255,0.65);
-  line-height: 1.8;
-  font-weight: 300;
-  margin-bottom: 2.5rem;
-}
-
-.cta-actions {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.btn-cta-primary {
-  background: var(--sage);
-  color: var(--forest);
-  padding: 1rem 2.2rem;
-  border-radius: 2px;
-  font-weight: 700;
-  font-size: 0.9rem;
-  text-decoration: none;
-  transition: background 0.2s, transform 0.2s;
-  display: inline-block;
-}
-.btn-cta-primary:hover { background: var(--amber-light); transform: translateY(-2px); }
-
-.btn-cta-ghost {
-  background: transparent;
-  color: rgba(255,255,255,0.8);
-  padding: 1rem 2.2rem;
-  border-radius: 2px;
-  font-weight: 500;
-  font-size: 0.9rem;
-  text-decoration: none;
-  border: 1px solid rgba(255,255,255,0.25);
-  transition: border-color 0.2s, color 0.2s;
-  display: inline-block;
-}
-.btn-cta-ghost:hover { border-color: rgba(255,255,255,0.6); color: white; }
-
-/* Email capture */
-.email-capture {
-  display: flex;
-  gap: 0;
-  max-width: 420px;
-  margin: 0 auto;
-  border-radius: 3px;
-  overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-}
-
-.email-capture input {
-  flex: 1;
-  padding: 0.9rem 1.2rem;
-  border: none;
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.85rem;
-  background: rgba(255,255,255,0.95);
-  color: var(--text);
-  outline: none;
-}
-.email-capture input::placeholder { color: var(--text-light); }
-
-.email-capture button {
-  background: var(--amber);
-  color: white;
-  border: none;
-  padding: 0.9rem 1.4rem;
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background 0.2s;
-  white-space: nowrap;
-}
-.email-capture button:hover { background: var(--amber-light); color: var(--brown); }
-
-.cta-subtext {
-  font-size: 0.72rem;
-  color: rgba(255,255,255,0.4);
-  margin-top: 0.8rem;
-}
-
-/* ─── FOOTER ─── */
-footer {
-  background: var(--brown);
-  padding: 3rem 5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.footer-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: rgba(255,255,255,0.8);
-}
-.footer-logo span { color: var(--sage); }
-
-.footer-links {
-  display: flex;
-  gap: 1.5rem;
-  list-style: none;
-}
-.footer-links a {
-  font-size: 0.78rem;
-  color: rgba(255,255,255,0.45);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.footer-links a:hover { color: rgba(255,255,255,0.8); }
-
-.footer-copy {
-  font-size: 0.72rem;
-  color: rgba(255,255,255,0.3);
-}
-
-/* ─── MOBILE ─── */
-@media (max-width: 900px) {
-  nav { padding: 1rem 1.5rem; }
-  .nav-links { display: none; }
-
-  .hero {
-    grid-template-columns: 1fr;
-    min-height: auto;
+  /* ─── RESET & BASE ─── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --teal: #1B6B6B;
+    --teal-mid: #2A8A8A;
+    --teal-light: #E6F4F4;
+    --teal-pale: #F2FAFA;
+    --teal-dark: #0F4444;
+    --warm: #E8724A;
+    --warm-light: #FDF3EF;
+    --gold: #C4973A;
+    --dark: #0F1F1F;
+    --mid: #3D5252;
+    --muted: #7A9696;
+    --pale: #EEF5F5;
+    --bg: #F8FCFC;
+    --white: #FFFFFF;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --mono: 'DM Mono', monospace;
+    --radius: 12px;
+    --shadow: 0 4px 24px rgba(15,31,31,0.08);
+    --shadow-lg: 0 12px 48px rgba(15,31,31,0.14);
   }
-  .hero-left { padding: 7rem 2rem 3rem; }
-  .hero-right { min-height: 320px; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: var(--sans); cursor: pointer; border: none; }
 
-  .philosophy-grid,
-  .founder-grid,
-  .evidence-inner { grid-template-columns: 1fr; gap: 3rem; }
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--teal-pale); }
+  ::-webkit-scrollbar-thumb { background: var(--teal-mid); border-radius: 3px; }
 
-  .products-grid { grid-template-columns: 1fr; }
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(248,252,252,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(27,107,107,0.12);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    color: var(--teal);
+    letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--dark); }
+  .nav-tabs {
+    display: flex; gap: 2px;
+    background: var(--pale);
+    border-radius: 8px;
+    padding: 3px;
+  }
+  .nav-tab {
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--mid);
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+  }
+  .nav-tab:hover { color: var(--teal); }
+  .nav-tab.active {
+    background: var(--white);
+    color: var(--teal);
+    box-shadow: 0 1px 6px rgba(15,31,31,0.1);
+  }
+  .nav-cta {
+    background: var(--teal);
+    color: var(--white);
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--teal-mid); transform: translateY(-1px); }
 
-  .section-philosophy,
-  .section-founder,
-  .section-products,
-  .section-evidence,
-  .section-cta { padding: 4rem 1.5rem; }
+  /* ─── PANELS ─── */
+  .panel { display: none; padding-top: 64px; min-height: 100vh; }
+  .panel.active { display: block; }
 
-  .credentials-grid { grid-template-columns: 1fr; }
-  .hero-credentials { gap: 1.5rem; flex-wrap: wrap; }
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    min-height: calc(100vh - 64px);
+    display: flex; align-items: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal) 60%, #2A9B9B 100%);
+  }
+  .hero-bg-text {
+    position: absolute; top: -5%; right: -5%;
+    font-family: var(--serif);
+    font-size: clamp(120px, 18vw, 280px);
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+  }
+  .hero-content {
+    position: relative;
+    max-width: 1200px; margin: 0 auto;
+    padding: 4rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 100px;
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .hero-badge::before { content: '●'; color: #6ECFA0; font-size: 0.6rem; }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    color: var(--white);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: rgba(255,255,255,0.7);
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    max-width: 500px;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--white);
+    color: var(--teal);
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+  .btn-secondary {
+    background: rgba(255,255,255,0.12);
+    color: var(--white);
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    border: 1px solid rgba(255,255,255,0.25);
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,0.2); }
+  .hero-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 2.5rem;
+  }
+  .hero-stat {
+    background: rgba(255,255,255,0.07);
+    padding: 1.25rem;
+    text-align: center;
+  }
+  .hero-stat-num {
+    font-family: var(--mono);
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .hero-stat-label {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .hero-phone {
+    position: relative;
+    display: flex; justify-content: center; align-items: center;
+  }
+  .phone-frame {
+    width: 260px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 36px;
+    padding: 24px 16px;
+    position: relative;
+    backdrop-filter: blur(8px);
+  }
+  .phone-notch {
+    width: 80px; height: 8px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 4px;
+    margin: 0 auto 16px;
+  }
+  .phone-checkin {
+    background: rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 10px;
+  }
+  .phone-checkin-label {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+  .phone-checkin-q {
+    font-family: var(--serif);
+    font-size: 0.9rem;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+  .phone-dots {
+    display: flex; gap: 6px; justify-content: center;
+  }
+  .phone-dot {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem;
+    font-family: var(--mono);
+    font-weight: 500;
+  }
+  .phone-dot.active { background: var(--white); color: var(--teal); }
+  .phone-dot.inactive { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.5); }
+  .phone-card {
+    background: rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+  }
+  .phone-card-tag {
+    font-size: 0.6rem;
+    color: #6ECFA0;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+  }
+  .phone-card-title {
+    font-size: 0.82rem;
+    color: var(--white);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .phone-card-why {
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.4;
+  }
 
-  footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
-}
+  /* ─── SECTION WRAPPER ─── */
+  .section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+  .section-sm { padding: 3rem 2rem; }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--teal);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    color: var(--dark);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+  .section-sub {
+    font-size: 1rem;
+    color: var(--mid);
+    line-height: 1.7;
+    max-width: 600px;
+    margin-bottom: 3rem;
+  }
 
-/* Focus styles for accessibility */
-a:focus-visible,
-button:focus-visible,
-input:focus-visible {
-  outline: 2px solid var(--sage);
-  outline-offset: 3px;
-}
+  /* ─── CARDS ─── */
+  .card-grid { display: grid; gap: 1.5rem; }
+  .card-grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .card-grid-2 { grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); }
+  .card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(27,107,107,0.07);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+  .card-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: var(--teal-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  .card-title {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+  }
+  .card-body { font-size: 0.9rem; color: var(--mid); line-height: 1.6; }
 
-/* Skip to content */
-.skip-link {
-  position: absolute;
-  top: -100%;
-  left: 1rem;
-  background: var(--forest);
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 0 0 4px 4px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-decoration: none;
-  z-index: 999;
-  transition: top 0.2s;
-}
-.skip-link:focus { top: 0; }
+  /* ─── STAT STRIP ─── */
+  .stat-strip {
+    background: var(--teal-dark);
+    padding: 3rem 2rem;
+  }
+  .stat-strip-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: var(--mono);
+    font-size: 2.4rem;
+    color: var(--white);
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.4;
+  }
+  .stat-source {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.3);
+    margin-top: 4px;
+    font-family: var(--mono);
+  }
+
+  /* ─── QUOTE BLOCK ─── */
+  .quote-block {
+    border-left: 3px solid var(--teal);
+    padding: 1.25rem 1.75rem;
+    background: var(--teal-pale);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 2rem 0;
+  }
+  .quote-text {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    color: var(--teal-dark);
+    font-style: italic;
+    line-height: 1.55;
+    margin-bottom: 0.5rem;
+  }
+  .quote-source { font-size: 0.78rem; color: var(--muted); font-family: var(--mono); }
+
+  /* ─── COMPARISON TABLE ─── */
+  .comp-table { width: 100%; border-collapse: collapse; margin: 2rem 0; }
+  .comp-table th {
+    padding: 12px 16px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: var(--teal);
+    color: var(--white);
+    text-align: left;
+  }
+  .comp-table th:first-child { border-radius: var(--radius) 0 0 0; }
+  .comp-table th:last-child { border-radius: 0 var(--radius) 0 0; }
+  .comp-table td {
+    padding: 11px 16px;
+    font-size: 0.88rem;
+    border-bottom: 1px solid var(--pale);
+    vertical-align: top;
+  }
+  .comp-table tr:nth-child(even) td { background: var(--teal-pale); }
+  .comp-table tr:last-child td { border-bottom: none; }
+  .badge-bad {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: #FEE8E6; color: #C0392B;
+    border-radius: 100px; padding: 2px 10px;
+    font-size: 0.75rem; font-weight: 500;
+  }
+  .badge-bad::before { content: '✕'; font-size: 0.65rem; }
+  .badge-good {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: #E6F6EE; color: #1A7A45;
+    border-radius: 100px; padding: 2px 10px;
+    font-size: 0.75rem; font-weight: 500;
+  }
+  .badge-good::before { content: '✓'; font-size: 0.65rem; }
+
+  /* ─── RESEARCH CALLOUT ─── */
+  .research-gap {
+    background: linear-gradient(135deg, var(--teal-dark), var(--teal));
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    color: var(--white);
+    margin: 2.5rem 0;
+  }
+  .research-gap h3 {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
+  }
+  .research-gap p { font-size: 0.92rem; color: rgba(255,255,255,0.8); line-height: 1.7; }
+
+  /* ─── PRICING ─── */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+  .pricing-card {
+    background: var(--white);
+    border: 2px solid var(--pale);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    transition: all 0.2s;
+  }
+  .pricing-card:hover { border-color: var(--teal); transform: translateY(-3px); }
+  .pricing-card.featured {
+    border-color: var(--teal);
+    position: relative;
+    overflow: hidden;
+  }
+  .pricing-card.featured::before {
+    content: 'RECOMMENDED';
+    position: absolute; top: 14px; right: -24px;
+    background: var(--teal);
+    color: white; font-size: 0.6rem; font-weight: 600;
+    padding: 4px 32px;
+    transform: rotate(45deg);
+    letter-spacing: 0.08em;
+  }
+  .pricing-tier { font-family: var(--mono); font-size: 0.72rem; color: var(--teal); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+  .pricing-price { font-family: var(--serif); font-size: 2rem; color: var(--dark); line-height: 1; margin-bottom: 4px; }
+  .pricing-price span { font-size: 0.9rem; color: var(--muted); font-family: var(--sans); }
+  .pricing-desc { font-size: 0.85rem; color: var(--mid); margin: 0.75rem 0 1.25rem; line-height: 1.5; }
+  .pricing-features { list-style: none; }
+  .pricing-features li {
+    font-size: 0.82rem; color: var(--mid);
+    padding: 5px 0;
+    border-bottom: 1px solid var(--pale);
+    display: flex; align-items: flex-start; gap: 8px;
+  }
+  .pricing-features li::before { content: '✓'; color: var(--teal); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+  /* ─── FRAMEWORK CARD ─── */
+  .framework-grid { display: grid; gap: 1rem; }
+  .framework-item {
+    display: flex; gap: 1.25rem; align-items: flex-start;
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    border: 1px solid rgba(27,107,107,0.08);
+    box-shadow: var(--shadow);
+  }
+  .framework-num {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--white);
+    background: var(--teal);
+    border-radius: 8px;
+    padding: 6px 10px;
+    flex-shrink: 0;
+    font-weight: 500;
+  }
+  .framework-name { font-family: var(--serif); font-size: 1.05rem; color: var(--dark); margin-bottom: 4px; }
+  .framework-source { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); margin-bottom: 8px; }
+  .framework-desc { font-size: 0.87rem; color: var(--mid); line-height: 1.6; }
+
+  /* ─── DOWNLOAD SECTION ─── */
+  .download-hero {
+    background: linear-gradient(135deg, #0F2A2A 0%, var(--teal-dark) 100%);
+    border-radius: 20px;
+    padding: 3rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .download-hero::after {
+    content: '⬇';
+    position: absolute; right: 3rem; top: 50%;
+    transform: translateY(-50%);
+    font-size: 8rem;
+    opacity: 0.06;
+    pointer-events: none;
+  }
+  .download-hero h2 {
+    font-family: var(--serif);
+    font-size: 2rem;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+  .download-hero p { color: rgba(255,255,255,0.7); max-width: 520px; line-height: 1.7; margin-bottom: 1.75rem; }
+  .download-btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-download {
+    background: var(--white);
+    color: var(--teal-dark);
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: all 0.2s;
+  }
+  .btn-download:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+  .btn-open {
+    background: rgba(255,255,255,0.12);
+    color: var(--white);
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    border: 1px solid rgba(255,255,255,0.25);
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .btn-open:hover { background: rgba(255,255,255,0.2); }
+  .install-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .install-step {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    border: 1px solid rgba(27,107,107,0.08);
+    box-shadow: var(--shadow);
+    position: relative;
+  }
+  .install-step-num {
+    font-family: var(--mono);
+    font-size: 1.8rem;
+    color: var(--teal-light);
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .install-step h4 { font-size: 0.9rem; font-weight: 600; color: var(--dark); margin-bottom: 6px; }
+  .install-step p { font-size: 0.83rem; color: var(--mid); line-height: 1.55; }
+  .platform-tabs {
+    display: flex; gap: 8px; margin-bottom: 1.5rem; flex-wrap: wrap;
+  }
+  .platform-tab {
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 0.83rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: 2px solid var(--pale);
+    background: var(--white);
+    color: var(--mid);
+    transition: all 0.2s;
+  }
+  .platform-tab.active { border-color: var(--teal); color: var(--teal); background: var(--teal-light); }
+  .platform-content { display: none; }
+  .platform-content.active { display: block; }
+  .data-notice {
+    background: var(--teal-pale);
+    border: 1px solid rgba(27,107,107,0.15);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.75rem;
+    margin-top: 1.5rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .data-notice-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .data-notice h4 { font-size: 0.9rem; font-weight: 600; color: var(--teal-dark); margin-bottom: 6px; }
+  .data-notice p { font-size: 0.84rem; color: var(--mid); line-height: 1.6; }
+
+  /* ─── INVESTOR SECTION ─── */
+  .investor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+    margin: 2rem 0;
+  }
+  .investor-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    border: 1px solid rgba(27,107,107,0.08);
+    box-shadow: var(--shadow);
+  }
+  .investor-card-label { font-family: var(--mono); font-size: 0.68rem; color: var(--teal); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+  .investor-card-num { font-family: var(--serif); font-size: 1.8rem; color: var(--dark); margin-bottom: 0.4rem; }
+  .investor-card-body { font-size: 0.85rem; color: var(--mid); line-height: 1.6; }
+  .timeline-list { list-style: none; margin-top: 1.5rem; }
+  .timeline-item {
+    display: flex; gap: 1rem;
+    padding-bottom: 1.75rem;
+    position: relative;
+  }
+  .timeline-item:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 15px; top: 32px;
+    width: 2px; bottom: 0;
+    background: var(--pale);
+  }
+  .timeline-dot {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--teal);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem;
+    color: white;
+    font-family: var(--mono);
+    position: relative; z-index: 1;
+  }
+  .timeline-dot.future { background: var(--pale); color: var(--muted); border: 2px solid var(--pale); }
+  .timeline-date { font-family: var(--mono); font-size: 0.72rem; color: var(--teal); margin-bottom: 3px; }
+  .timeline-title { font-weight: 600; font-size: 0.9rem; color: var(--dark); margin-bottom: 4px; }
+  .timeline-body { font-size: 0.83rem; color: var(--mid); line-height: 1.55; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--teal-dark);
+    color: rgba(255,255,255,0.6);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+  footer .footer-logo {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+  footer p { font-size: 0.82rem; line-height: 1.7; margin-bottom: 0.3rem; }
+  footer a { color: rgba(255,255,255,0.4); }
+  footer a:hover { color: var(--white); }
+  .footer-links { display: flex; gap: 1.5rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+
+  /* ─── MODAL ─── */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0; z-index: 1000;
+    background: rgba(15,31,31,0.7);
+    backdrop-filter: blur(4px);
+    align-items: center; justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 2.5rem;
+    max-width: 540px; width: 90%;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    animation: modalIn 0.3s ease;
+  }
+  @keyframes modalIn { from { opacity: 0; transform: scale(0.94) translateY(20px); } to { opacity: 1; transform: none; } }
+  .modal-close {
+    position: absolute; top: 1.25rem; right: 1.25rem;
+    width: 32px; height: 32px;
+    background: var(--pale); border-radius: 50%;
+    font-size: 1.1rem; color: var(--mid);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .modal-close:hover { background: var(--teal-light); }
+  .modal h3 { font-family: var(--serif); font-size: 1.4rem; color: var(--dark); margin-bottom: 0.5rem; }
+  .modal p { font-size: 0.9rem; color: var(--mid); line-height: 1.6; margin-bottom: 1rem; }
+  .modal-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.5rem; }
+  .modal-btn {
+    background: var(--teal);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: all 0.2s;
+  }
+  .modal-btn:hover { background: var(--teal-mid); }
+  .modal-btn-sec {
+    background: var(--pale);
+    color: var(--mid);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+  }
+  .modal-btn-sec:hover { background: var(--teal-light); color: var(--teal); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .hero-content { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-phone { display: none; }
+    .nav-tabs { display: none; }
+    .nav-cta { font-size: 0.8rem; padding: 7px 14px; }
+    .hero h1 { font-size: 2rem; }
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+  .fade-up { animation: fadeUp 0.6s ease forwards; }
+  .fade-up-2 { animation: fadeUp 0.6s 0.15s ease both; }
+  .fade-up-3 { animation: fadeUp 0.6s 0.3s ease both; }
+
+  /* ─── REFS ─── */
+  .ref-list { list-style: none; margin-top: 1.5rem; }
+  .ref-item {
+    font-size: 0.82rem;
+    color: var(--mid);
+    padding: 10px 0;
+    border-bottom: 1px solid var(--pale);
+    display: flex; gap: 1rem;
+    line-height: 1.5;
+  }
+  .ref-num {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--teal);
+    flex-shrink: 0;
+    margin-top: 2px;
+    min-width: 24px;
+  }
 </style>
 </head>
 <body>
 
-<a href="#main" class="skip-link">Skip to main content</a>
-
-<!-- NAV -->
-<nav id="nav" role="navigation" aria-label="Main navigation">
-  <a href="/" class="nav-logo" aria-label="Build New Habits home">Build <span>New</span> Habits</a>
-  <ul class="nav-links">
-    <li><a href="#philosophy">Our Approach</a></li>
-    <li><a href="#products">Products</a></li>
-    <li><a href="#founder">About</a></li>
-    <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
-  </ul>
+<!-- ─── NAV ─── -->
+<nav role="navigation" aria-label="Main navigation">
+  <div class="nav-logo">Alongside<span> · Build New Habits</span></div>
+  <div class="nav-tabs" role="tablist" aria-label="Site sections">
+    <button class="nav-tab active" onclick="showPanel('home')" role="tab" aria-selected="true">Home</button>
+    <button class="nav-tab" onclick="showPanel('research')" role="tab" aria-selected="false">Research</button>
+    <button class="nav-tab" onclick="showPanel('philosophy')" role="tab" aria-selected="false">Philosophy</button>
+    <button class="nav-tab" onclick="showPanel('download')" role="tab" aria-selected="false">Get the App</button>
+    <button class="nav-tab" onclick="showPanel('investor')" role="tab" aria-selected="false">For Investors</button>
+  </div>
+  <button class="nav-cta" onclick="showPanel('download')">Try Alongside →</button>
 </nav>
 
-<!-- HERO -->
-<main id="main">
-<section class="hero" aria-label="Introduction">
+<!-- ══════════════════ HOME ══════════════════ -->
+<div id="panel-home" class="panel active" role="main">
 
-  <div class="hero-left">
-    <p class="hero-eyebrow">Digital Coaching · Evidence-Based · Compassionate</p>
-    <h1 class="hero-headline">
-      Coaching that adapts<br>to your <em>real</em> life.
-    </h1>
-    <p class="hero-body">
-      Most apps are designed for people who don't need help. Build New Habits is different — an adaptive digital coach that listens first, and prescribes second. Built by an educator. Grounded in science.
-    </p>
-    <div class="hero-actions">
-      <a href="#products" class="btn-primary">See Our Products</a>
-      <a href="#philosophy" class="btn-ghost">Our Approach →</a>
+  <!-- Hero -->
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="hero-bg-text" aria-hidden="true">Alongside</div>
+    <div class="hero-content">
+      <div>
+        <div class="hero-badge fade-up">Beta — Founding Members Open</div>
+        <h1 id="hero-heading" class="fade-up-2">Fitness coaching for people fitness culture <em>forgot</em></h1>
+        <p class="hero-sub fade-up-3">Alongside adapts to how you actually feel today. It listens before it prescribes. It never shames a missed session, a bad week, or a body that changes.</p>
+        <div class="hero-actions fade-up-3">
+          <button class="btn-primary" onclick="showPanel('download')" aria-label="Try Alongside app">Try Alongside <span aria-hidden="true">→</span></button>
+          <button class="btn-secondary" onclick="showPanel('research')">See the Research</button>
+        </div>
+        <div class="hero-stats" role="region" aria-label="Key statistics">
+          <div class="hero-stat">
+            <div class="hero-stat-num">97%</div>
+            <div class="hero-stat-label">app dropout in 30 days</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">15–20%</div>
+            <div class="hero-stat-label">adults are neurodivergent</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">21</div>
+            <div class="hero-stat-label">peer-reviewed sources</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-phone" aria-hidden="true">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-checkin">
+            <div class="phone-checkin-label">Daily Check-in</div>
+            <div class="phone-checkin-q">How's your energy today?</div>
+            <div class="phone-dots">
+              <div class="phone-dot inactive">1</div>
+              <div class="phone-dot inactive">2</div>
+              <div class="phone-dot active">3</div>
+              <div class="phone-dot inactive">4</div>
+              <div class="phone-dot inactive">5</div>
+            </div>
+          </div>
+          <div class="phone-card">
+            <div class="phone-card-tag">✓ Today's recommendation</div>
+            <div class="phone-card-title">Gentle Movement — 20 mins</div>
+            <div class="phone-card-why">Your energy is moderate today. This session keeps you moving without pushing into depletion.</div>
+          </div>
+          <div class="phone-card" style="opacity:0.6;">
+            <div class="phone-card-tag">Option 2</div>
+            <div class="phone-card-title">Full session — 40 mins</div>
+          </div>
+          <div class="phone-card" style="opacity:0.4;">
+            <div class="phone-card-tag">Option 3</div>
+            <div class="phone-card-title">Rest day — stretching only</div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="hero-credentials" aria-label="Key credentials">
-      <div class="hero-stat">
-        <div class="number">18</div>
-        <div class="label">Years teaching<br>& coaching</div>
+  </section>
+
+  <!-- What is it -->
+  <section class="section" aria-labelledby="what-heading">
+    <div class="section-label">What is Alongside</div>
+    <h2 id="what-heading" class="section-title">Built around how you actually feel,<br>not how an algorithm thinks you should</h2>
+    <p class="section-sub">Every day starts with a check-in. Energy, mood, sleep, pain. From there, Alongside offers three workout options and explains the reasoning behind each. You always choose. The app never tells you what to do — it coaches.</p>
+    <div class="card-grid card-grid-3">
+      <div class="card">
+        <div class="card-icon" aria-hidden="true">🎯</div>
+        <div class="card-title">Listens first</div>
+        <div class="card-body">A 60-second check-in captures energy, mood, sleep quality, and pain before a single recommendation is made. Your day shapes the session — not the other way round.</div>
       </div>
-      <div class="hero-stat">
-        <div class="number">3</div>
-        <div class="label">Products in<br>development</div>
+      <div class="card">
+        <div class="card-icon" aria-hidden="true">🔍</div>
+        <div class="card-title">Explains itself</div>
+        <div class="card-body">Every recommendation comes with a "why this?" explanation in plain English. No black-box prescriptions. No "trust the algorithm." You understand what's being suggested and why.</div>
       </div>
-      <div class="hero-stat">
-        <div class="number">0</div>
-        <div class="label">Dark patterns.<br>Ever.</div>
+      <div class="card">
+        <div class="card-icon" aria-hidden="true">🚫</div>
+        <div class="card-title">No shame mechanics</div>
+        <div class="card-body">No streaks. No social comparison. No guilt notifications. Credits never reset when you miss a day. The app is designed so that missing a session makes the next one easier, not harder.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon" aria-hidden="true">🔥</div>
+        <div class="card-title">Burnout detection</div>
+        <div class="card-body">Pattern-detection monitors energy and mood trends across sessions. When the data suggests burnout is building, Recovery Mode activates automatically — before the crash, not after.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon" aria-hidden="true">⚡</div>
+        <div class="card-title">Adapts to your conditions</div>
+        <div class="card-body">Injuries, chronic conditions, and hormonal cycles are genuine coaching inputs, not disclaimers. Exercises are filtered and adapted in real time based on what you've shared.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon" aria-hidden="true">🫂</div>
+        <div class="card-title">Consistent coach voice</div>
+        <div class="card-body">Warm. Direct. Never judgmental. The coach voice is consistent across every state — whether you're high energy and ready to go, or exhausted and barely here. Both are valid. Both get met.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who it's for -->
+  <div class="stat-strip" role="region" aria-label="Who Alongside serves">
+    <div class="stat-strip-inner">
+      <div>
+        <div class="stat-num">~1.5M</div>
+        <div class="stat-label">UK adults with ADHD</div>
+        <div class="stat-source">NHS / ADHD UK estimates</div>
+      </div>
+      <div>
+        <div class="stat-num">8M</div>
+        <div class="stat-label">UK women aged 40–60 navigating hormonal change</div>
+        <div class="stat-source">ONS population data</div>
+      </div>
+      <div>
+        <div class="stat-num">97%</div>
+        <div class="stat-label">fitness app users quit within 30 days</div>
+        <div class="stat-source">Business of Apps, 2023</div>
+      </div>
+      <div>
+        <div class="stat-num">0</div>
+        <div class="stat-label">apps currently designed for this community</div>
+        <div class="stat-source">Market analysis, Feb 2026</div>
       </div>
     </div>
   </div>
 
-  <div class="hero-right" aria-hidden="true">
-    <div class="hero-botanical">
-      <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="200" cy="200" r="160" stroke="#2d5a27" stroke-width="0.5"/>
-        <circle cx="200" cy="200" r="120" stroke="#2d5a27" stroke-width="0.5"/>
-        <circle cx="200" cy="200" r="80" stroke="#2d5a27" stroke-width="0.5"/>
-        <line x1="200" y1="40" x2="200" y2="360" stroke="#2d5a27" stroke-width="0.5"/>
-        <line x1="40" y1="200" x2="360" y2="200" stroke="#2d5a27" stroke-width="0.5"/>
-        <line x1="87" y1="87" x2="313" y2="313" stroke="#2d5a27" stroke-width="0.5"/>
-        <line x1="313" y1="87" x2="87" y2="313" stroke="#2d5a27" stroke-width="0.5"/>
-        <!-- Leaves -->
-        <ellipse cx="200" cy="100" rx="14" ry="28" fill="#4a8c3f" opacity="0.6" transform="rotate(0 200 100)"/>
-        <ellipse cx="270" cy="140" rx="14" ry="28" fill="#4a8c3f" opacity="0.5" transform="rotate(60 270 140)"/>
-        <ellipse cx="270" cy="260" rx="14" ry="28" fill="#4a8c3f" opacity="0.4" transform="rotate(120 270 260)"/>
-        <ellipse cx="200" cy="300" rx="14" ry="28" fill="#4a8c3f" opacity="0.6" transform="rotate(180 200 300)"/>
-        <ellipse cx="130" cy="260" rx="14" ry="28" fill="#4a8c3f" opacity="0.5" transform="rotate(240 130 260)"/>
-        <ellipse cx="130" cy="140" rx="14" ry="28" fill="#4a8c3f" opacity="0.4" transform="rotate(300 130 140)"/>
-      </svg>
+  <!-- Who it's for detail -->
+  <section class="section" aria-labelledby="who-heading">
+    <div class="section-label">Who it's for</div>
+    <h2 id="who-heading" class="section-title">The people every other app is designed around — by leaving them out</h2>
+    <div class="card-grid card-grid-3">
+      <div class="card" style="border-top: 3px solid var(--teal);">
+        <div class="section-label" style="margin-bottom:0.5rem;">Primary</div>
+        <div class="card-title">Neurodivergent adults</div>
+        <div class="card-body">ADHD, autism, anxiety, and co-occurring conditions. Standard fitness app mechanics — streaks, pressure, prescriptive programmes — are actively harmful for this group. Alongside is built around how neurodivergent cognition actually works.</div>
+      </div>
+      <div class="card" style="border-top: 3px solid var(--teal);">
+        <div class="section-label" style="margin-bottom:0.5rem;">Secondary</div>
+        <div class="card-title">Women navigating hormonal change</div>
+        <div class="card-body">Menstruation, perimenopause, menopause. Energy fluctuates cyclically and predictably. No mainstream app adapts to this. Alongside treats hormonal state as a coaching input, not something to push through.</div>
+      </div>
+      <div class="card" style="border-top: 3px solid var(--teal);">
+        <div class="section-label" style="margin-bottom:0.5rem;">Tertiary</div>
+        <div class="card-title">Anyone fitness culture has failed</div>
+        <div class="card-body">Chronic illness, burnout, injury recovery, shift workers, carers. People who've blamed themselves for not sticking to apps that were never designed with their life in mind. This stops here.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="background: var(--teal-pale); padding: 4rem 2rem; text-align: center;" aria-labelledby="cta-heading">
+    <h2 id="cta-heading" style="font-family: var(--serif); font-size: 2rem; color: var(--dark); margin-bottom: 0.75rem;">Ready to try it?</h2>
+    <p style="color: var(--mid); max-width: 480px; margin: 0 auto 1.75rem; line-height: 1.7;">The app runs in your browser. No signup required to try it. Your data stays on your device.</p>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+      <button class="btn-primary" style="background: var(--teal); color: white;" onclick="showPanel('download')">Get Alongside →</button>
+      <button class="btn-primary" style="background: transparent; color: var(--teal); border: 2px solid var(--teal);" onclick="showPanel('investor')">Investor Information</button>
+    </div>
+  </section>
+</div>
+
+
+<!-- ══════════════════ RESEARCH ══════════════════ -->
+<div id="panel-research" class="panel" role="main">
+  <section class="section">
+    <div class="section-label">Evidence Base</div>
+    <h1 class="section-title">The research behind Alongside</h1>
+    <p class="section-sub">This is not a product built on intuition. Every design decision in Alongside traces back to peer-reviewed research. There are 21 sources in the evidence base. Here's what they say.</p>
+
+    <div class="quote-block">
+      <p class="quote-text">"The 97% dropout rate is not a user motivation problem. It is a product design problem."</p>
+      <p class="quote-source">— BNH Research Report, February 2026, drawing on Business of Apps 2023</p>
     </div>
 
-    <div class="floating-cards">
-      <div class="app-card">
-        <div class="card-tag">Today's Check-In · Alongside</div>
-        <div class="card-title">How are you feeling right now?</div>
-        <div class="card-body">Energy: 6/10 · Mood: 7/10 · Sleep: Good</div>
-        <div class="card-bar"><div class="card-bar-fill" style="width:60%"></div></div>
+    <h2 style="font-family: var(--serif); font-size: 1.5rem; margin: 3rem 0 1.5rem; color: var(--dark);">The dropout crisis — by the numbers</h2>
+    <div class="investor-grid">
+      <div class="investor-card">
+        <div class="investor-card-label">Day 30 retention</div>
+        <div class="investor-card-num">3%</div>
+        <div class="investor-card-body">Only 3 in 100 users are still using a fitness app 30 days after download. Business of Apps, 2023.</div>
       </div>
-      <div class="app-card">
-        <div class="card-tag">Active Coach Recommendation</div>
-        <div class="card-title">Mobility & Light Strength</div>
-        <div class="card-body">Based on your energy today, here's why this works for you right now.</div>
-        <div class="card-bar"><div class="card-bar-fill" style="width:75%"></div></div>
+      <div class="investor-card">
+        <div class="investor-card-label">90-day abandonment</div>
+        <div class="investor-card-num">69–71%</div>
+        <div class="investor-card-body">Nearly three quarters of users are gone by the end of the third month. RunRepeat, 2021.</div>
       </div>
-      <div class="app-card">
-        <div class="card-tag">Student Life Hub</div>
-        <div class="card-title">Exam week detected 📚</div>
-        <div class="card-body">Switching to Focus Mode. Pomodoro timer ready. £1 meals queued.</div>
-        <div class="card-bar"><div class="card-bar-fill" style="width:45%"></div></div>
+      <div class="investor-card">
+        <div class="investor-card-label">Annual abandonment</div>
+        <div class="investor-card-num">81%</div>
+        <div class="investor-card-body">Four out of five users have completely disengaged within a year. JMIR, 2024.</div>
+      </div>
+      <div class="investor-card">
+        <div class="investor-card-label">UK adults, neurodivergent</div>
+        <div class="investor-card-num">15–20%</div>
+        <div class="investor-card-body">Estimated proportion of the adult population that is neurodivergent — diagnosed or self-identified. NHS / ADHD UK.</div>
       </div>
     </div>
-  </div>
 
-</section>
+    <h2 style="font-family: var(--serif); font-size: 1.5rem; margin: 3rem 0 1rem; color: var(--dark);">Why people abandon — and what Alongside does differently</h2>
+    <p style="color: var(--mid); font-size: 0.92rem; margin-bottom: 1.5rem; line-height: 1.7;">Research identifies two abandonment phases: an initial rapid dropout driven by immediate disappointment, and a slower disengagement over weeks. Each reason maps directly to a design decision in Alongside.</p>
+    <div style="overflow-x: auto;">
+      <table class="comp-table" aria-label="Abandonment reasons and Alongside responses">
+        <thead>
+          <tr>
+            <th>Reason for abandonment</th>
+            <th>% of cases</th>
+            <th>What mainstream apps do</th>
+            <th>What Alongside does</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Lost motivation / no visible progress</td>
+            <td><span style="font-family: var(--mono); font-weight: 600; color: var(--teal);">32%</span></td>
+            <td><span class="badge-bad">Streak mechanics, shame</span></td>
+            <td><span class="badge-good">Credits never reset; coach validates showing up</span></td>
+          </tr>
+          <tr>
+            <td>App too complicated or overwhelming</td>
+            <td><span style="font-family: var(--mono); font-weight: 600; color: var(--teal);">25%</span></td>
+            <td><span class="badge-bad">Complex dashboards, menus, plans</span></td>
+            <td><span class="badge-good">One question at a time; ADHD-first UX</span></td>
+          </tr>
+          <tr>
+            <td>Repetitive content</td>
+            <td><span style="font-family: var(--mono); font-weight: 600; color: var(--teal);">16%</span></td>
+            <td><span class="badge-bad">Fixed programmes</span></td>
+            <td><span class="badge-good">Adaptive daily generation from check-in data</span></td>
+          </tr>
+          <tr>
+            <td>Life got in the way</td>
+            <td><span style="font-family: var(--mono); font-weight: 600; color: var(--teal);">14%</span></td>
+            <td><span class="badge-bad">Guilt notifications, "don't break your streak"</span></td>
+            <td><span class="badge-good">Coach validates absence; warm welcome back always</span></td>
+          </tr>
+          <tr>
+            <td>Found something else</td>
+            <td><span style="font-family: var(--mono); font-weight: 600; color: var(--teal);">5%</span></td>
+            <td><span class="badge-bad">Nothing fills this gap for this audience</span></td>
+            <td><span class="badge-good">Unique positioning — nothing else does this</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-<!-- PHILOSOPHY -->
-<section class="section-philosophy" id="philosophy" aria-labelledby="philosophy-heading">
-  <div class="philosophy-grid">
-    <div class="philosophy-left reveal">
-      <div class="section-eyebrow">Our Approach</div>
-      <h2 id="philosophy-heading">Listen first.<br>Prescribe second.</h2>
-      <p>The mainstream coaching app has a fatal flaw: it's built for the best version of you. The one with consistent energy, clear goals, and unlimited motivation. But real life — especially for neurodivergent adults — doesn't work like that.</p>
-      <p>Build New Habits starts somewhere different. Every product begins by asking how you're actually doing today. It adapts to your reality, not the reality it wishes you had.</p>
-      <blockquote>
-        <p>"Compassionate digital coaching for the people mainstream apps have always failed."</p>
-        <cite>— Graeme Wright, Founder</cite>
-      </blockquote>
-    </div>
-    <div class="principles-list" aria-label="Core principles">
-      <div class="principle-item reveal reveal-delay-1">
-        <div class="principle-icon" aria-hidden="true">🚫</div>
-        <div class="principle-text">
-          <h4>No shame mechanics</h4>
-          <p>No streaks to break. No guilt notifications. No punishment for having a hard day. A fresh start is always available — because life is genuinely hard sometimes.</p>
-        </div>
+    <h2 style="font-family: var(--serif); font-size: 1.5rem; margin: 3rem 0 1.5rem; color: var(--dark);">The neurodivergent experience of fitness apps</h2>
+    <div class="card-grid card-grid-2">
+      <div class="card" style="border-left: 3px solid #C0392B;">
+        <div class="card-title" style="color: #C0392B;">Executive function challenges</div>
+        <div class="card-body">Planning, initiating, and sustaining routines are neurologically harder for ADHD adults. It is not a willpower issue. It is a structural difference in how the brain manages initiation and task-switching.</div>
       </div>
-      <div class="principle-item reveal reveal-delay-2">
-        <div class="principle-icon" aria-hidden="true">💡</div>
-        <div class="principle-text">
-          <h4>Radical transparency</h4>
-          <p>Every recommendation comes with a clear "why." Not a black box. Users — especially neurodivergent users — deserve to understand the logic behind every suggestion.</p>
-        </div>
+      <div class="card" style="border-left: 3px solid #C0392B;">
+        <div class="card-title" style="color: #C0392B;">Rejection sensitivity dysphoria</div>
+        <div class="card-body">Many ADHD adults experience intense emotional responses to perceived failure. A broken streak or missed workout can trigger a shame spiral that ends engagement entirely — not temporarily. Permanently.</div>
       </div>
-      <div class="principle-item reveal reveal-delay-3">
-        <div class="principle-icon" aria-hidden="true">🧠</div>
-        <div class="principle-text">
-          <h4>Evidence-based design</h4>
-          <p>Grounded in Self-Determination Theory, SOLO Taxonomy, Mood Meter science, and Dr. Claire Plumbly's burnout research. Not trends. Evidence.</p>
-        </div>
+      <div class="card" style="border-left: 3px solid #C0392B;">
+        <div class="card-title" style="color: #C0392B;">Demand avoidance</div>
+        <div class="card-body">For many autistic users and some ADHD users, prescriptive instructions trigger avoidance responses. A single directive — "do this workout today" — can make engagement less likely, not more.</div>
       </div>
-      <div class="principle-item reveal reveal-delay-4">
-        <div class="principle-icon" aria-hidden="true">🛡️</div>
-        <div class="principle-text">
-          <h4>Privacy by default</h4>
-          <p>All data stays on your device. No accounts required. No third-party tracking. No selling your behaviour to advertisers. Your data is yours.</p>
-        </div>
+      <div class="card" style="border-left: 3px solid #C0392B;">
+        <div class="card-title" style="color: #C0392B;">Variable energy</div>
+        <div class="card-body">ADHD and autism commonly cause fluctuating energy states that mainstream apps cannot accommodate. An app that assumes consistent energy every day will fail these users every single time energy dips.</div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- FOUNDER -->
-<section class="section-founder" id="founder" aria-labelledby="founder-heading">
-  <div class="founder-grid">
-    <div class="founder-portrait reveal">
-      <div class="portrait-frame" role="img" aria-label="Graeme Wright, Founder">
-        <div class="portrait-placeholder">
-          <div class="portrait-initials">GW</div>
-          <div class="portrait-label">Add your photo here</div>
-        </div>
-        <div class="portrait-accent"></div>
-      </div>
+    <div class="research-gap" role="complementary" aria-label="Research gap highlight">
+      <h3>The gap in the literature — and why it matters</h3>
+      <p>There is currently no large-scale study specifically measuring fitness app dropout rates among neurodivergent adults. There is robust evidence that shame-based environments are harmful to neurodivergent people. There is separate, robust evidence that fitness apps use shame-based mechanics. Nobody has formally connected these two bodies of research.</p>
+      <p style="margin-top: 1rem;">This is both a gap in academic literature and a significant commercial opportunity. Alongside is built to fill the product gap. A partnership with a university research team could generate the first dataset in this space — and position Build New Habits as the academic reference product for this population.</p>
     </div>
-    <div class="founder-content reveal reveal-delay-2">
-      <div class="section-eyebrow">The Founder</div>
-      <h2 id="founder-heading">Graeme Wright</h2>
-      <div class="founder-role">Digital Coach · Weston College · Somerset</div>
-      <p>This platform wasn't designed in a tech startup. It was designed by someone who has spent 18 years watching people fail — not from lack of effort, but from lack of the right support at the right moment.</p>
-      <p>As a Digital Coach at Weston College with a background in instructional design and evidence-based learning, the decisions behind every product aren't guesses. They're grounded in how people actually learn, change, and grow.</p>
-      <p>Build New Habits is built for the audiences I know best: students who are overwhelmed, adults who've been failed by mainstream fitness culture, and people who need coaching that meets them where they actually are.</p>
-      <div class="credentials-grid" aria-label="Professional credentials">
-        <div class="credential">
-          <div class="cred-icon" aria-hidden="true">🎓</div>
-          <h5>Professional Diploma</h5>
-          <p>Instructional Design & Learning Technology</p>
-        </div>
-        <div class="credential">
-          <div class="cred-icon" aria-hidden="true">📋</div>
-          <h5>CMI Level 5</h5>
-          <p>Operational Management</p>
-        </div>
-        <div class="credential">
-          <div class="cred-icon" aria-hidden="true">🏫</div>
-          <h5>Digital Coach</h5>
-          <p>Weston College — 18 years in education</p>
-        </div>
-        <div class="credential">
-          <div class="cred-icon" aria-hidden="true">🔬</div>
-          <h5>Evidence-Based Practice</h5>
-          <p>SDT, SOLO Taxonomy, Burnout Science</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- PRODUCTS -->
-<section class="section-products" id="products" aria-labelledby="products-heading">
-  <div class="section-header reveal">
-    <div class="section-eyebrow">The Products</div>
-    <h2 id="products-heading">One coaching engine.<br>Three distinct products.</h2>
-  </div>
-  <div class="products-grid">
-    <div class="product-card featured reveal">
-      <div class="product-card-inner">
-        <span class="product-status">Building Now · June 2026</span>
-        <h3>Alongside</h3>
-        <div class="product-audience">Neurodivergent Adults · B2C Subscription</div>
-        <p>Fitness coaching that adapts to how you actually feel today. Daily check-in with energy, mood, sleep and pain levels drives every recommendation. Burnout detection. Condition safety filtering. No shame, ever.</p>
-        <ul class="product-features" aria-label="Key features">
-          <li>Daily adaptive check-in system</li>
-          <li>Transparent workout rationale</li>
-          <li>Burnout detection & protection</li>
-          <li>Condition & injury safety filtering</li>
-          <li>Credits, not streaks</li>
-        </ul>
-        <div class="product-revenue">
-          £12.99/month · £119/year
-          <span>Free tier available · No account needed</span>
+    <h2 style="font-family: var(--serif); font-size: 1.5rem; margin: 3rem 0 1.5rem; color: var(--dark);">Key references</h2>
+    <ul class="ref-list" aria-label="Academic references">
+      <li class="ref-item"><span class="ref-num">01</span><span>Business of Apps (2023). Health &amp; Fitness App Benchmarks. businessofapps.com — <em>97% dropout rate; Day 30 retention figures</em></span></li>
+      <li class="ref-item"><span class="ref-num">02</span><span>RunRepeat (2021). 159 Key Fitness App Stats — <em>90-day abandonment data; reasons for dropout</em></span></li>
+      <li class="ref-item"><span class="ref-num">03</span><span>Kidman PG, Curtis RG, Watson A, Maher CA (2024). When and Why Adults Abandon Lifestyle Behavior and Mental Health Mobile Apps: Scoping Review. <em>Journal of Medical Internet Research</em>. doi:10.2196/56897</span></li>
+      <li class="ref-item"><span class="ref-num">04</span><span>Bondaronek P et al. (2025). UCL / Loughborough research on fitness app shame mechanics. <em>NewAtlas.com</em>, October 2025 — <em>Direct confirmation that shame mechanics cause measurable harm</em></span></li>
+      <li class="ref-item"><span class="ref-num">05</span><span>Plumbly, C. (2024). <em>Burnout: How to Manage Your Nervous System Before It Manages You.</em> Yellow Kite. ISBN: 978-1-399-73342-7</span></li>
+      <li class="ref-item"><span class="ref-num">06</span><span>Brackett, M. (2019). <em>Permission to Feel.</em> Celadon Books. [Mood Meter framework — Yale RULER Programme]</span></li>
+      <li class="ref-item"><span class="ref-num">07</span><span>Deci, E.L. &amp; Ryan, R.M. (1985). <em>Intrinsic Motivation and Self-Determination in Human Behavior.</em> Springer. [Self-Determination Theory]</span></li>
+      <li class="ref-item"><span class="ref-num">08</span><span>Biggs, J. &amp; Collis, K. (1982). <em>Evaluating the Quality of Learning: The SOLO Taxonomy.</em> Academic Press.</span></li>
+      <li class="ref-item"><span class="ref-num">09</span><span>HESA (2024). Higher Education Statistics: Non-continuation rates — <em>28% rise in UK HE dropout 2018–2023</em></span></li>
+      <li class="ref-item"><span class="ref-num">…</span><span>Full evidence base of 21 peer-reviewed sources available in the BNH Research Report, February 2026. Contact buildnewhabits.co.uk for a copy.</span></li>
+    </ul>
+  </section>
+</div>
+
+
+<!-- ══════════════════ PHILOSOPHY ══════════════════ -->
+<div id="panel-philosophy" class="panel" role="main">
+  <section class="section">
+    <div class="section-label">Design Philosophy</div>
+    <h1 class="section-title">Why Alongside works the way it does</h1>
+    <p class="section-sub">Every feature in Alongside is the result of a deliberate design decision rooted in evidence. Here are the five frameworks that underpin the product — and how they translate into what you actually experience.</p>
+
+    <div class="framework-grid" aria-label="Psychological frameworks">
+      <div class="framework-item">
+        <div class="framework-num">SDT</div>
+        <div>
+          <div class="framework-name">Self-Determination Theory</div>
+          <div class="framework-source">Deci &amp; Ryan, 1985</div>
+          <div class="framework-desc">Three core psychological needs drive sustainable behaviour change: autonomy (you always choose), competence (exercises matched to your actual capacity, with your feedback recalibrating in real time), and relatedness (a consistent coach who addresses your specific situation). Alongside is designed to support all three simultaneously — because undermining any one of them kills long-term engagement.</div>
         </div>
-        <a href="https://build-new-habits.github.io/alongside-app/" class="product-link" target="_blank" rel="noopener">
-          Try the Live Demo →
+      </div>
+      <div class="framework-item">
+        <div class="framework-num">SOLO</div>
+        <div>
+          <div class="framework-name">SOLO Taxonomy</div>
+          <div class="framework-source">Biggs &amp; Collis, 1982</div>
+          <div class="framework-desc">Alongside doesn't just give you workouts. It builds genuine movement literacy over time — from single exercises through complete sessions, to understanding how today connects to a goal, to eventually making your own informed movement choices. The coach's transparent rationale is the mechanism for this progression: you can't develop literacy if you never understand why.</div>
+        </div>
+      </div>
+      <div class="framework-item">
+        <div class="framework-num">MM</div>
+        <div>
+          <div class="framework-name">Mood Meter Science</div>
+          <div class="framework-source">Marc Brackett, Yale RULER Programme</div>
+          <div class="framework-desc">Energy and mood are captured as independent axes — because you can be low energy but calm, or high energy but anxious, and these states need different coaching responses. Most apps treat "how are you feeling?" as a courtesy question. Alongside treats it as the most important data point of the day.</div>
+        </div>
+      </div>
+      <div class="framework-item">
+        <div class="framework-num">BRN</div>
+        <div>
+          <div class="framework-name">Burnout Research</div>
+          <div class="framework-source">Dr Claire Plumbly, 2024</div>
+          <div class="framework-desc">Burnout doesn't arrive suddenly. It builds through a pattern of accumulated depletion that most fitness apps accelerate rather than detect. Alongside's pattern-detection engine monitors energy and mood trends across sessions and triggers Recovery Mode automatically — before burnout lands, not as a response to it.</div>
+        </div>
+      </div>
+      <div class="framework-item">
+        <div class="framework-num">ACT</div>
+        <div>
+          <div class="framework-name">Acceptance &amp; Commitment Therapy</div>
+          <div class="framework-source">Hayes et al.</div>
+          <div class="framework-desc">Movement is connected to personal values and meaning, not external performance pressure. Rest is validated as legitimate, not framed as failure. The app meets you in whatever state you arrive in — anxious, depleted, reluctant, or ready — and the response is always the same: you are exactly where you are, and that's okay. Now, what's possible from here?</div>
+        </div>
+      </div>
+    </div>
+
+    <h2 style="font-family: var(--serif); font-size: 1.6rem; margin: 4rem 0 1rem; color: var(--dark);">The prohibited design patterns</h2>
+    <p style="color: var(--mid); font-size: 0.92rem; margin-bottom: 1.5rem; line-height: 1.7;">These are features that are explicitly banned from Alongside — not because they're absent, but because they have been actively considered and deliberately removed.</p>
+    <div style="overflow-x: auto;">
+      <table class="comp-table" aria-label="Prohibited design patterns">
+        <thead>
+          <tr><th>Pattern</th><th>Why it's prohibited</th><th>What Alongside does instead</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Streak mechanics</td><td>Trigger shame spirals in neurodivergent users; end engagement permanently when broken</td><td>Credits that accumulate but never reset</td></tr>
+          <tr><td>Guilt notifications</td><td>"You haven't worked out in 3 days" increases avoidance, not engagement</td><td>Warm welcome-back message; no commentary on absence</td></tr>
+          <tr><td>Social comparison</td><td>Triggers rejection sensitivity dysphoria in ADHD users; disconnects from internal motivation</td><td>No leaderboards, no friend comparisons, no public metrics</td></tr>
+          <tr><td>Single directive ("do this workout")</td><td>Triggers demand avoidance in autistic users; removes autonomy</td><td>Three options always presented; user chooses</td></tr>
+          <tr><td>Black-box recommendations</td><td>Breaks trust; prevents coaching literacy development</td><td>Every suggestion explained with transparent rationale</td></tr>
+          <tr><td>Progress pressure</td><td>"Push through" culture disconnects from body awareness</td><td>Progress always relative to the user's own baseline; effort validated, not performance</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="research-gap" style="margin-top: 3rem;" role="complementary">
+      <h3>The bigger question</h3>
+      <p>Alongside applies Universal Design for Learning principles to fitness — the idea that designing for the most complex needs produces something that works better for everyone. If you build for a neurodivergent adult with ADHD and variable energy, you end up with something that works better for a person in burnout, a person observing Ramadan, a person in perimenopause, a person with a chronic condition.</p>
+      <p style="margin-top: 1rem;">The question we're beginning to ask, and hope to explore in partnership with academic institutions, is whether this design philosophy — starting from the margins rather than the assumed default user — produces measurably better outcomes at scale. We believe it does. We're building the evidence to show it.</p>
+    </div>
+  </section>
+</div>
+
+
+<!-- ══════════════════ DOWNLOAD ══════════════════ -->
+<div id="panel-download" class="panel" role="main">
+  <section class="section">
+    <div class="download-hero" role="banner">
+      <div class="hero-badge" style="background: rgba(255,255,255,0.15); margin-bottom: 1.25rem;">Web app — runs in any browser</div>
+      <h2>Get Alongside on your device</h2>
+      <p>Alongside runs as a web app — no app store required. Open it in your browser on any device and save it to your home screen for a native app experience. Your data stays on your device. Always.</p>
+      <div class="download-btn-group">
+        <a class="btn-download" href="https://build-new-habits.github.io/alongside-app/" target="_blank" rel="noopener noreferrer" aria-label="Open Alongside app in new tab">
+          <span aria-hidden="true">↗</span> Open the App
         </a>
+        <button class="btn-open" onclick="showInstallModal()" aria-label="Show instructions to save Alongside to home screen">
+          <span aria-hidden="true">📱</span> Save to Home Screen
+        </button>
       </div>
     </div>
-    <div class="product-card secondary reveal reveal-delay-2">
-      <div class="product-card-inner">
-        <span class="product-status">Planned · 2027</span>
-        <h3>Student Life Hub</h3>
-        <div class="product-audience">HE Institutions · B2B Licensing</div>
-        <p>Reduces dropout rates by coaching students through life admin overwhelm — budgeting, cooking, study skills, tenant rights. Pilot-ready at Weston College.</p>
-        <ul class="product-features">
-          <li>Exam week detection → Focus Mode</li>
-          <li>Budget-adaptive meal planning</li>
-          <li>Study technique personalisation</li>
-          <li>Life admin scaffolding</li>
-        </ul>
-        <div class="product-revenue">
-          £5,000–10,000/year per institution
-          <span>10 institutions = £50–100K ARR</span>
+
+    <h2 style="font-family: var(--serif); font-size: 1.5rem; margin-bottom: 1.25rem; color: var(--dark);">How to install on your device</h2>
+    <div class="platform-tabs" role="tablist" aria-label="Platform instructions">
+      <button class="platform-tab active" onclick="showPlatform('ios')" role="tab" aria-selected="true">iPhone / iPad</button>
+      <button class="platform-tab" onclick="showPlatform('android')" role="tab" aria-selected="false">Android</button>
+      <button class="platform-tab" onclick="showPlatform('desktop')" role="tab" aria-selected="false">Desktop / Laptop</button>
+    </div>
+
+    <div id="platform-ios" class="platform-content active" role="tabpanel">
+      <div class="install-steps">
+        <div class="install-step">
+          <div class="install-step-num" aria-hidden="true">01</div>
+          <h4>Open in Safari</h4>
+          <p>Open <strong>Safari</strong> on your iPhone or iPad and go to the Alongside app. It must be Safari — the install option doesn't appear in Chrome or other browsers on iOS.</p>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num" aria-hidden="true">02</div>
+          <h4>Tap the Share button</h4>
+          <p>Tap the <strong>Share icon</strong> at the bottom of the screen (the box with an arrow pointing up).</p>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num" aria-hidden="true">03</div>
+          <h4>Add to Home Screen</h4>
+          <p>Scroll down in the share sheet and tap <strong>"Add to Home Screen"</strong>. Give it a name if you like, then tap Add.</p>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num" aria-hidden="true">04</div>
+          <h4>Done</h4>
+          <p>Alongside now appears on your home screen like a native app. Tap it to open fullscreen — no browser bars.</p>
         </div>
       </div>
     </div>
-    <div class="product-card tertiary reveal reveal-delay-3">
-      <div class="product-card-inner">
-        <span class="product-status">Concept · Future</span>
-        <h3>Digital Literacy</h3>
-        <div class="product-audience">Older Adults · Grant / Council Funded</div>
-        <p>Safe, anxiety-free digital skills coaching for older adults facing exclusion. WhatsApp, scam awareness, video calls — taught without judgment.</p>
-        <ul class="product-features">
-          <li>Large-text, high-contrast design</li>
-          <li>Simulation-based learning cards</li>
-          <li>Anxiety-free environment</li>
-          <li>Council & library partnership model</li>
-        </ul>
-        <div class="product-revenue">
-          Grant funded · Social impact model
-          <span>Council & library partnerships</span>
+
+    <div id="platform-android" class="platform-content" role="tabpanel">
+      <div class="install-steps">
+        <div class="install-step">
+          <div class="install-step-num" aria-hidden="true">01</div>
+          <h4>Open in Chrome</h4>
+          <p>Open <strong>Chrome</strong> on your Android device and visit the Alongside app link.</p>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num" aria-hidden="true">02</div>
+          <h4>Tap the menu</h4>
+          <p>Tap the <strong>three-dot menu</strong> in the top right corner of Chrome.</p>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num" aria-hidden="true">03</div>
+          <h4>Add to Home Screen</h4>
+          <p>Tap <strong>"Add to Home Screen"</strong> or <strong>"Install App"</strong> (you may see either). Confirm when prompted.</p>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num" aria-hidden="true">04</div>
+          <h4>Done</h4>
+          <p>Alongside is now installed on your home screen. It opens fullscreen, just like a native app.</p>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- EVIDENCE -->
-<section class="section-evidence" aria-labelledby="evidence-heading">
-  <div class="evidence-inner">
-    <div class="evidence-content reveal">
-      <div class="section-eyebrow">The Evidence Base</div>
-      <h2 id="evidence-heading">Not trends. Science.</h2>
-      <p>Every design decision in the Build New Habits platform is traceable to a specific psychological or educational framework. This isn't wellness content dressed up as coaching — it's instructional design applied to habit formation and behaviour change.</p>
-    </div>
-    <div class="framework-stack reveal reveal-delay-2" aria-label="Evidence frameworks">
-      <div class="framework">
-        <h4>Self-Determination Theory (Deci & Ryan)</h4>
-        <p>Autonomy, competence, and relatedness underpin every feature. Users choose — they're never commanded.</p>
-      </div>
-      <div class="framework">
-        <h4>SOLO Taxonomy (Biggs & Collis)</h4>
-        <p>Scaffolded learning progression from surface to deep engagement, applied to habit formation.</p>
-      </div>
-      <div class="framework">
-        <h4>Mood Meter Science (Yale Centre for EI)</h4>
-        <p>Energy × Pleasantness check-ins map to the Mood Meter quadrant model for emotional awareness.</p>
-      </div>
-      <div class="framework">
-        <h4>Burnout Research (Dr. Claire Plumbly)</h4>
-        <p>"Burnout: How to Manage Your Nervous System" — detection patterns built directly from this research.</p>
-      </div>
-      <div class="framework">
-        <h4>Acceptance & Commitment Therapy</h4>
-        <p>Psychological flexibility and values-based action guide the coaching language and framing.</p>
+    <div id="platform-desktop" class="platform-content" role="tabpanel">
+      <div class="install-steps">
+        <div class="install-step">
+          <div class="install-step-num" aria-hidden="true">01</div>
+          <h4>Open in Chrome or Edge</h4>
+          <p>Visit the Alongside app in <strong>Chrome</strong> or <strong>Microsoft Edge</strong>. Both support installing web apps to your desktop.</p>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num" aria-hidden="true">02</div>
+          <h4>Look for the install icon</h4>
+          <p>You may see an <strong>install icon</strong> (a monitor with a down arrow) in the address bar. Click it.</p>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num" aria-hidden="true">03</div>
+          <h4>Or use the menu</h4>
+          <p>In Chrome: click the three-dot menu → <strong>"Install Alongside"</strong>. In Edge: click the three-dot menu → Apps → <strong>"Install this site as an app"</strong>.</p>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num" aria-hidden="true">04</div>
+          <h4>Done</h4>
+          <p>Alongside opens in its own window, separate from your browser. Find it in your applications or taskbar.</p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- CTA -->
-<section class="section-cta" id="contact" aria-labelledby="cta-heading">
-  <div class="cta-inner">
-    <div class="section-eyebrow reveal">Get Involved</div>
-    <h2 class="reveal reveal-delay-1" id="cta-heading">If you work in EdTech, neurodivergent services, or digital health — let's talk.</h2>
-    <p class="reveal reveal-delay-2">I'm looking for pilot partners, institutional collaborators, and people who believe compassionate coaching technology can change lives. Not investment — conversation.</p>
-
-    <div class="email-capture reveal reveal-delay-3" role="form" aria-label="Email signup">
-      <input type="email" placeholder="your@email.com" aria-label="Your email address"/>
-      <button type="submit">Stay Updated</button>
+    <div class="data-notice" role="note" aria-label="Data storage information">
+      <div class="data-notice-icon" aria-hidden="true">🔒</div>
+      <div>
+        <h4>Where your personal data is stored</h4>
+        <p>Alongside stores all your data — check-in history, workout logs, preferences, and settings — in your browser's <strong>localStorage</strong> on your own device. This means:</p>
+        <ul style="margin-top: 0.75rem; padding-left: 1.25rem; font-size: 0.84rem; color: var(--mid); line-height: 1.8;">
+          <li>Your data never leaves your device. It is not sent to any server.</li>
+          <li>Alongside has no access to your personal information.</li>
+          <li>Your data persists between sessions on the same device and browser.</li>
+          <li>If you clear your browser's site data or switch to a different browser, your local data will be cleared. We recommend exporting your data periodically (Settings → Export) to keep a backup.</li>
+          <li>If you install the app on multiple devices, each device maintains its own separate data.</li>
+        </ul>
+        <p style="margin-top: 0.75rem; font-size: 0.84rem;">This is a deliberate design decision, not a limitation. Your health and wellbeing data is yours. We don't want it, and we've built the app so we can't have it.</p>
+      </div>
     </div>
-    <p class="cta-subtext reveal reveal-delay-4">No spam. No dark patterns. Unsubscribe anytime.</p>
-  </div>
-</section>
 
-</main>
+    <div style="margin-top: 3rem; padding: 2rem; background: var(--teal-pale); border-radius: var(--radius); text-align: center;">
+      <h3 style="font-family: var(--serif); font-size: 1.3rem; color: var(--dark); margin-bottom: 0.5rem;">Become a Founding Member</h3>
+      <p style="color: var(--mid); font-size: 0.9rem; max-width: 480px; margin: 0 auto 1.5rem; line-height: 1.7;">Alongside is in beta. Founding Members get lifetime access for £49, 10 friend codes to share, and direct input into the product's future. We're looking for 10–50 people who'll use the app daily and tell us honestly what works and what doesn't.</p>
+      <a class="btn-primary" style="background: var(--teal); color: white; display: inline-flex;" href="mailto:hello@buildnewhabits.co.uk?subject=Founding%20Member%20Interest" aria-label="Email to express interest in founding membership">Express interest in Founding Membership</a>
+    </div>
+  </section>
+</div>
 
-<!-- FOOTER -->
+
+<!-- ══════════════════ INVESTOR ══════════════════ -->
+<div id="panel-investor" class="panel" role="main">
+  <section class="section">
+    <div class="section-label">Investor & Partner Information</div>
+    <h1 class="section-title">A business built on a gap the industry has ignored for a decade</h1>
+    <p class="section-sub">Alongside is the first adaptive fitness coaching product designed from the ground up for neurodivergent adults. Here's the opportunity, the model, and what we're building toward.</p>
+
+    <div class="investor-grid" role="region" aria-label="Key business metrics">
+      <div class="investor-card">
+        <div class="investor-card-label">Addressable UK market</div>
+        <div class="investor-card-num">200K–500K</div>
+        <div class="investor-card-body">Conservative overlap-adjusted estimate of UK users underserved by current fitness apps across neurodivergent, hormonal change, and chronic condition segments.</div>
+      </div>
+      <div class="investor-card">
+        <div class="investor-card-label">Industry dropout rate</div>
+        <div class="investor-card-num">97%</div>
+        <div class="investor-card-body">In 30 days. If Alongside achieves even 10% Day 30 retention — a modest target — that is a 3× competitive advantage on the single metric that matters most.</div>
+      </div>
+      <div class="investor-card">
+        <div class="investor-card-label">Year 1 revenue target</div>
+        <div class="investor-card-num">£15K–£85K</div>
+        <div class="investor-card-body">Conservative to optimistic range. Realistic mid-point: £24,950. Entirely organic growth, no paid acquisition. Based on 5% freemium conversion, 5% monthly churn.</div>
+      </div>
+      <div class="investor-card">
+        <div class="investor-card-label">Year 3 potential</div>
+        <div class="investor-card-num">£275K+</div>
+        <div class="investor-card-body">Subscription revenue from 2,500 paying users plus early B2B institutional licensing (Student Life Hub pilot). Conservative model; no viral growth assumed.</div>
+      </div>
+    </div>
+
+    <h2 style="font-family: var(--serif); font-size: 1.5rem; margin: 3rem 0 1.25rem; color: var(--dark);">Business model</h2>
+    <div class="pricing-grid" role="region" aria-label="Pricing tiers">
+      <div class="pricing-card">
+        <div class="pricing-tier">Free</div>
+        <div class="pricing-price">£0</div>
+        <div class="pricing-desc">Genuine value — not crippled. Safety features are never paywalled.</div>
+        <ul class="pricing-features">
+          <li>4 sessions per week</li>
+          <li>1 programme</li>
+          <li>Full daily check-in</li>
+          <li>Burnout detection (always free)</li>
+          <li>Condition safety filtering (always free)</li>
+        </ul>
+      </div>
+      <div class="pricing-card featured">
+        <div class="pricing-tier">Personal</div>
+        <div class="pricing-price">£9.99 <span>/ month</span></div>
+        <div class="pricing-desc">Primary revenue stream. Annual option at £89/yr improves retention and cash flow.</div>
+        <ul class="pricing-features">
+          <li>Unlimited sessions</li>
+          <li>All programmes</li>
+          <li>Advanced coaching insights</li>
+          <li>Progress tracking</li>
+          <li>Menstrual cycle adaptation</li>
+        </ul>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-tier">Founding Member</div>
+        <div class="pricing-price">£49 <span>lifetime</span></div>
+        <div class="pricing-desc">Community-building strategy. 10–50 early adopters who co-shape the product.</div>
+        <ul class="pricing-features">
+          <li>All features, lifetime access</li>
+          <li>10 friend codes to share</li>
+          <li>Direct product input</li>
+          <li>First access to new features</li>
+          <li>Named in acknowledgements</li>
+        </ul>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-tier">B2B — Future</div>
+        <div class="pricing-price">£5K–£10K <span>/ yr</span></div>
+        <div class="pricing-desc">Institutional licensing for Student Life Hub — higher education and NHS partnerships.</div>
+        <ul class="pricing-features">
+          <li>Student Life Hub product</li>
+          <li>Per-institution licensing</li>
+          <li>Wellbeing team dashboard</li>
+          <li>Outcome reporting</li>
+          <li>Weston College pilot pathway</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 style="font-family: var(--serif); font-size: 1.5rem; margin: 3rem 0 1.25rem; color: var(--dark);">The competitive moat</h2>
+    <div class="quote-block">
+      <p class="quote-text">"No app currently combines: daily adaptive coaching, neurodivergent-first design, burnout detection, condition safety filtering, shame-free mechanics, and transparent rationale. These features exist individually in adjacent products. No single product holds all of them simultaneously."</p>
+      <p class="quote-source">— Build New Habits Market Differentiation Analysis, February 2026</p>
+    </div>
+    <p style="color: var(--mid); font-size: 0.92rem; line-height: 1.7; margin-bottom: 1.5rem;">Technology is copyable. Philosophy is not. Alongside's no-shame, listen-first approach requires genuine institutional commitment to be credible. A large fitness brand adding "shame-free" as a product feature update would be immediately transparent to a community that is highly attuned to authenticity and deeply resistant to corporate messaging.</p>
+
+    <h2 style="font-family: var(--serif); font-size: 1.5rem; margin: 3rem 0 1.25rem; color: var(--dark);">Build timeline</h2>
+    <ul class="timeline-list" aria-label="Product development timeline">
+      <li class="timeline-item">
+        <div class="timeline-dot" aria-label="Complete">✓</div>
+        <div>
+          <div class="timeline-date">January – March 2026</div>
+          <div class="timeline-title">MVP Build Phase</div>
+          <div class="timeline-body">Onboarding flow complete. Daily check-in complete. Workout generation engine in progress. 12-document product specification suite complete. ~60% of MVP built.</div>
+        </div>
+      </li>
+      <li class="timeline-item">
+        <div class="timeline-dot future" aria-label="Upcoming">→</div>
+        <div>
+          <div class="timeline-date">April 2026</div>
+          <div class="timeline-title">Founding Member Beta</div>
+          <div class="timeline-body">10–50 founding members. Structured feedback cycles. Iteration. First real-world usage data.</div>
+        </div>
+      </li>
+      <li class="timeline-item">
+        <div class="timeline-dot future" aria-label="Planned">→</div>
+        <div>
+          <div class="timeline-date">May 2026</div>
+          <div class="timeline-title">Payment Integration</div>
+          <div class="timeline-body">Stripe subscriptions live. Founding member codes active. First subscription revenue.</div>
+        </div>
+      </li>
+      <li class="timeline-item">
+        <div class="timeline-dot future" aria-label="Planned">→</div>
+        <div>
+          <div class="timeline-date">June 2026</div>
+          <div class="timeline-title">Public Launch</div>
+          <div class="timeline-body">Open to all. Freemium model live. Community-led word-of-mouth growth begins. MRR tracking weekly.</div>
+        </div>
+      </li>
+      <li class="timeline-item">
+        <div class="timeline-dot future" aria-label="Planned">→</div>
+        <div>
+          <div class="timeline-date">Q3 2026</div>
+          <div class="timeline-title">Student Life Hub Pilot</div>
+          <div class="timeline-body">First institutional conversation with Weston College. B2B licensing model tested. Potential Exeter University research partnership begins.</div>
+        </div>
+      </li>
+      <li class="timeline-item">
+        <div class="timeline-dot future" aria-label="Future">◌</div>
+        <div>
+          <div class="timeline-date">2027 onward</div>
+          <div class="timeline-title">Scale &amp; Research</div>
+          <div class="timeline-body">University-endorsed evidence base. NHS partnership pathways. Possible grant applications for neurodivergent digital health. Student Life Hub in multiple institutions.</div>
+        </div>
+      </li>
+    </ul>
+
+    <div style="background: var(--teal-dark); border-radius: var(--radius); padding: 2.5rem; margin-top: 3rem; color: white;" role="complementary">
+      <h3 style="font-family: var(--serif); font-size: 1.4rem; margin-bottom: 0.75rem;">Get in touch</h3>
+      <p style="color: rgba(255,255,255,0.75); margin-bottom: 1rem; line-height: 1.7;">Alongside is actively seeking mentoring partnerships, academic research collaborations, and connections to neurodivergent health organisations. Full business plan and 12-document product specification available on request.</p>
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <a class="btn-download" href="mailto:hello@buildnewhabits.co.uk?subject=Alongside%20Investor%20Enquiry" aria-label="Email Build New Habits">Contact Graeme Wright</a>
+        <a class="btn-open" href="https://build-new-habits.github.io/alongside-app/" target="_blank" rel="noopener noreferrer" aria-label="Open live demo in new tab">View Live Demo ↗</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ─── FOOTER ─── -->
 <footer role="contentinfo">
-  <div class="footer-logo">Build <span>New</span> Habits</div>
-  <ul class="footer-links" aria-label="Footer links">
-    <li><a href="#philosophy">Approach</a></li>
-    <li><a href="#products">Products</a></li>
-    <li><a href="#founder">About</a></li>
-    <li><a href="https://build-new-habits.github.io/alongside-app/" target="_blank" rel="noopener">Try Alongside</a></li>
-  </ul>
-  <p class="footer-copy">© 2026 Build New Habits · Weston-super-Mare, Somerset</p>
+  <div class="footer-logo">Alongside</div>
+  <p>Build New Habits · Compassionate Digital Coaching</p>
+  <p>Founded by Graeme Wright · Weston-super-Mare, England</p>
+  <p style="margin-top: 0.5rem; font-size: 0.75rem; color: rgba(255,255,255,0.3);">All user data is stored locally on your device. Alongside collects no personal information.</p>
+  <div class="footer-links">
+    <a href="https://build-new-habits.github.io/alongside-app/" target="_blank" rel="noopener noreferrer">Live App ↗</a>
+    <button onclick="showPanel('research')" style="background:none; color: rgba(255,255,255,0.4); font-size: 0.82rem; cursor:pointer;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Research</button>
+    <button onclick="showPanel('download')" style="background:none; color: rgba(255,255,255,0.4); font-size: 0.82rem; cursor:pointer;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Get the App</button>
+    <button onclick="showPanel('investor')" style="background:none; color: rgba(255,255,255,0.4); font-size: 0.82rem; cursor:pointer;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Investors</button>
+    <a href="mailto:hello@buildnewhabits.co.uk">Contact</a>
+  </div>
 </footer>
 
+<!-- ─── INSTALL MODAL ─── -->
+<div class="modal-overlay" id="install-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" onclick="if(event.target===this)closeInstallModal()">
+  <div class="modal">
+    <button class="modal-close" onclick="closeInstallModal()" aria-label="Close dialog">✕</button>
+    <h3 id="modal-title">Save Alongside to your device</h3>
+    <p>Alongside runs as a web app — no app store, no download required. You can save it to your home screen for a full native app experience.</p>
+    <p><strong>On iPhone/iPad (Safari):</strong> Tap the Share button → "Add to Home Screen"</p>
+    <p><strong>On Android (Chrome):</strong> Tap the three-dot menu → "Add to Home Screen" or "Install App"</p>
+    <p><strong>On desktop (Chrome/Edge):</strong> Look for the install icon in the address bar, or use the browser menu → Install.</p>
+    <p style="background: var(--teal-pale); padding: 0.75rem 1rem; border-radius: 8px; font-size: 0.84rem; color: var(--teal-dark);">🔒 Your data is stored only on your device. Nothing is sent to any server.</p>
+    <div class="modal-actions">
+      <a class="modal-btn" href="https://build-new-habits.github.io/alongside-app/" target="_blank" rel="noopener noreferrer" onclick="closeInstallModal()">Open the App ↗</a>
+      <button class="modal-btn-sec" onclick="closeInstallModal()">Close</button>
+    </div>
+  </div>
+</div>
+
 <script>
-// Nav scroll effect
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
-}, { passive: true });
-
-// Scroll reveal
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
+  // ─── Panel switching ───
+  function showPanel(id) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+    const panel = document.getElementById('panel-' + id);
+    if (panel) { panel.classList.add('active'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    const tabs = { home: 0, research: 1, philosophy: 2, download: 3, investor: 4 };
+    const tabEls = document.querySelectorAll('.nav-tab');
+    if (tabs[id] !== undefined && tabEls[tabs[id]]) {
+      tabEls[tabs[id]].classList.add('active');
+      tabEls[tabs[id]].setAttribute('aria-selected', 'true');
     }
-  });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// Email capture (placeholder)
-document.querySelector('.email-capture button').addEventListener('click', () => {
-  const input = document.querySelector('.email-capture input');
-  if (input.value && input.value.includes('@')) {
-    input.value = '';
-    input.placeholder = '✓ Thanks — we\'ll be in touch!';
-    input.style.background = '#f0faf0';
   }
-});
-</script>
 
+  // ─── Platform tabs ───
+  function showPlatform(id) {
+    document.querySelectorAll('.platform-content').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.platform-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+    const el = document.getElementById('platform-' + id);
+    if (el) el.classList.add('active');
+    event.target.classList.add('active');
+    event.target.setAttribute('aria-selected', 'true');
+  }
+
+  // ─── Modal ───
+  function showInstallModal() {
+    const m = document.getElementById('install-modal');
+    m.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    m.querySelector('.modal-close').focus();
+  }
+  function closeInstallModal() {
+    document.getElementById('install-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeInstallModal(); });
+
+  // ─── Keyboard nav for tabs ───
+  document.querySelectorAll('.nav-tab').forEach((tab, i, tabs) => {
+    tab.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') { tabs[(i+1) % tabs.length].focus(); tabs[(i+1) % tabs.length].click(); }
+      if (e.key === 'ArrowLeft') { tabs[(i-1+tabs.length) % tabs.length].focus(); tabs[(i-1+tabs.length) % tabs.length].click(); }
+    });
+  });
+</script>
 </body>
 </html>
